@@ -17,6 +17,10 @@ export default function Home() {
         <AsciiVideo src={VIDEO_SRC} />
       </div>
 
+      <div className={styles.heroCenter}>
+        <p className={styles.heroSaying}>호랑이 굴로</p>
+      </div>
+
       <div className={styles.heroText}>
         <h1 className={styles.heroName}>jeremy ro</h1>
       </div>
