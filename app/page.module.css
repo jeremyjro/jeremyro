@@ -126,6 +126,8 @@
   font-size: 0.8rem;
   line-height: 1;
   user-select: none;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .linkList {
@@ -197,4 +199,23 @@
   font-size: 0.75rem;
   line-height: 1.7;
   color: #9A948C;
+}
+
+@media (max-width: 640px) {
+  .videoWrap {
+    width: 90vw;
+    height: auto;
+    max-width: 460px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .heroText {
+    left: 1.5rem;
+    bottom: 2rem;
+  }
+
+  .scrollHint {
+    right: 1.5rem;
+    bottom: 2rem;
+  }
 }
