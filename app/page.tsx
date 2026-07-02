@@ -18,7 +18,7 @@ export default function Home() {
       </div>
 
       <div className={styles.heroCenter}>
-        <p className={styles.heroSaying}>AVDE SEMEL</p>
+        <p className={styles.heroSaying}>AVDE·SEMEL</p>
       </div>
 
       <div className={styles.heroText}>
