@@ -18,7 +18,7 @@ export default function Home() {
       </div>
 
       <div className={styles.heroCenter}>
-        <p className={styles.heroSaying}>Τόλμησον</p>
+        <p className={styles.heroSaying}>Aude semel</p>
       </div>
 
       <div className={styles.heroText}>
