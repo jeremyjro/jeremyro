@@ -18,7 +18,17 @@ interface Props {
 export default function AsciiVideo({ src }: Props) {
   const playlist = Array.isArray(src) ? src : [src];
   const [index, setIndex] = useState(0);
+  const [numColumns, setNumColumns] = useState(160);
   const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Fewer columns on narrow screens: larger ASCII pixels render better and
+  // ease the WebGL load on mobile devices.
+  useEffect(() => {
+    const updateColumns = () => setNumColumns(window.innerWidth <= 640 ? 80 : 160);
+    updateColumns();
+    window.addEventListener("resize", updateColumns);
+    return () => window.removeEventListener("resize", updateColumns);
+  }, []);
 
   // Advance clips by swapping the hidden <video>'s src in place rather than
   // remounting the WebGL component. The same canvas stays mounted and keeps the
@@ -63,7 +73,7 @@ export default function AsciiVideo({ src }: Props) {
     <div ref={wrapRef} style={{ width: "100%", height: "100%" }}>
       <V2A
         src={playlist[index]}
-        numColumns={160}
+        numColumns={numColumns}
         colored
         brightness={1.05}
         charset="detailed"

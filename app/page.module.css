@@ -8,6 +8,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: #ffffff;
 }
@@ -82,6 +83,31 @@
 @keyframes pulse {
   0%, 100% { opacity: 0.3; transform: translateY(0); }
   50%       { opacity: 0.8; transform: translateY(4px); }
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 640px) {
+  .heroSaying {
+    font-size: clamp(1.05rem, 6.5vw, 1.75rem);
+    letter-spacing: 0.02em;
+    padding: 0 1rem;
+  }
+
+  .heroText {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .heroName {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+  }
+
+  .scrollHint {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
 }
 
 /* ── Content ── */
