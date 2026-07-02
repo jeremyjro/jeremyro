@@ -1,0 +1,373 @@
+.centerWrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.loading {
+  font-size: 0.8125rem;
+  color: #9a948c;
+}
+
+.kicker {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  color: #b5afa6;
+}
+
+/* ── Login ── */
+.loginCard {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.loginTitle {
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  color: #2e2b28;
+  margin-bottom: 0.5rem;
+}
+
+.loginInput,
+.titleInput,
+.subInput,
+.metaField input {
+  width: 100%;
+  border: 1px solid #e6e1d9;
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.875rem;
+  color: #2e2b28;
+  background: #fff;
+  font-family: inherit;
+}
+
+.loginInput:focus,
+.titleInput:focus,
+.subInput:focus,
+.metaField input:focus {
+  outline: none;
+  border-color: #c4b89a;
+}
+
+.loginError,
+.status {
+  font-size: 0.75rem;
+  color: #8b6f47;
+  margin-top: 0.25rem;
+}
+
+/* ── Dashboard ── */
+.dashboard {
+  min-height: 100vh;
+  background: #ffffff;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  color: #2e2b28;
+}
+
+.topBar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1040px;
+  margin: 0 auto 2rem;
+}
+
+.signedIn {
+  font-size: 0.8125rem;
+  color: #6f6961;
+  margin-top: 0.2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  max-width: 1040px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rowList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.emptyNote {
+  font-size: 0.8125rem;
+  color: #9a948c;
+}
+
+.rowItem {
+  border: 1px solid #eeeae4;
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+}
+
+.rowActive {
+  border-color: #c4b89a;
+  background: #faf8f4;
+}
+
+.rowSelect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  font-family: inherit;
+  color: #2e2b28;
+}
+
+.rowTitle {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+}
+
+.badge {
+  font-size: 0.5625rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.badgeLive {
+  background: #e7f0e7;
+  color: #4a7a4a;
+}
+
+.badgeDraft {
+  background: #f0ece4;
+  color: #9a948c;
+}
+
+.rowActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+/* ── Form ── */
+.formArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.titleInput {
+  font-size: 1.25rem;
+}
+
+.metaRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.metaField {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metaField span {
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: #b5afa6;
+}
+
+/* ── Editor ── */
+.editorWrap {
+  border: 1px solid #e6e1d9;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eeeae4;
+  background: #faf8f4;
+}
+
+.tbBtn {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid #e6e1d9;
+  border-radius: 4px;
+  background: #fff;
+  color: #2e2b28;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.tbBtn:hover {
+  border-color: #c4b89a;
+}
+
+.tbActive {
+  background: #2e2b28;
+  color: #fff;
+  border-color: #2e2b28;
+}
+
+.editorArea {
+  min-height: 320px;
+  padding: 1rem 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: #2e2b28;
+  outline: none;
+}
+
+.editorArea:focus {
+  outline: none;
+}
+
+.editorArea h2 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.editorArea h3 {
+  font-size: 1.05rem;
+  margin: 1.25rem 0 0.4rem;
+}
+
+.editorArea p {
+  margin: 0 0 0.9rem;
+}
+
+.editorArea ul,
+.editorArea ol {
+  margin: 0 0 0.9rem 1.25rem;
+}
+
+.editorArea blockquote {
+  border-left: 2px solid #d4cdbf;
+  padding-left: 1rem;
+  color: #6f6961;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.editorArea a {
+  color: #8b6f47;
+  border-bottom: 1px solid #c4b89a;
+}
+
+/* ── Buttons ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.primaryBtn {
+  background: #2e2b28;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.secondaryBtn {
+  background: #fff;
+  color: #2e2b28;
+  border: 1px solid #d4cdbf;
+  border-radius: 6px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.secondaryBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ghostBtn,
+.newBtn {
+  background: none;
+  border: 1px solid #d4cdbf;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.75rem;
+  color: #2e2b28;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.newBtn {
+  width: 100%;
+  padding: 0.6rem;
+}
+
+.ghostBtn:hover,
+.newBtn:hover {
+  border-color: #8b6f47;
+  color: #8b6f47;
+}
+
+.miniBtn,
+.miniBtnDanger {
+  font-size: 0.6875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #9a948c;
+  font-family: inherit;
+}
+
+.miniBtn:hover {
+  color: #2e2b28;
+}
+
+.miniBtnDanger:hover {
+  color: #b4453c;
+}
+
+.viewLink {
+  font-size: 0.75rem;
+  color: #8b6f47;
+  border-bottom: 1px solid #c4b89a;
+}

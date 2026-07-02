@@ -1,0 +1,126 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.entry {
+  display: block;
+  padding: 1rem 0;
+  border-top: 1px solid #eeeae4;
+  transition: opacity 0.15s;
+}
+
+.entry:hover {
+  opacity: 0.6;
+}
+
+.entryTitle {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: #2e2b28;
+}
+
+.entrySubtitle {
+  display: block;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #6f6961;
+  margin-top: 0.25rem;
+}
+
+.entryMeta {
+  display: block;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: #b5afa6;
+  margin-top: 0.4rem;
+}
+
+.empty {
+  font-size: 0.8125rem;
+  color: #9a948c;
+  margin-top: 1.5rem;
+}
+
+.externalRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  color: #2e2b28;
+  border-bottom: 1px solid #c4b89a;
+  padding-bottom: 1px;
+  margin-bottom: 1rem;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.externalRow:hover {
+  color: #8b6f47;
+  border-color: #8b6f47;
+}
+
+/* Rendered essay body */
+.content {
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  color: #2e2b28;
+}
+
+.content p {
+  margin: 0 0 1.25rem;
+}
+
+.content h2 {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  margin: 2.25rem 0 0.75rem;
+  color: #1a1817;
+}
+
+.content h3 {
+  font-size: 1.05rem;
+  margin: 1.75rem 0 0.6rem;
+  color: #1a1817;
+}
+
+.content a {
+  color: #8b6f47;
+  border-bottom: 1px solid #c4b89a;
+}
+
+.content ul,
+.content ol {
+  margin: 0 0 1.25rem 1.25rem;
+}
+
+.content li {
+  margin: 0.35rem 0;
+}
+
+.content blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid #d4cdbf;
+  color: #6f6961;
+  font-style: italic;
+}
+
+.content pre {
+  background: #f6f4f0;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  margin: 0 0 1.25rem;
+}
+
+.content code {
+  font-size: 0.85em;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
