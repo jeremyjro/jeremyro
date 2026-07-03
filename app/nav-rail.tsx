@@ -1,4 +1,5 @@
 import styles from "./nav-rail.module.css";
+import NavHint from "./nav-hint";
 
 const LINKS = [
   { label: "jro", href: "/" },
@@ -10,6 +11,7 @@ const LINKS = [
 export default function NavRail() {
   return (
     <div className={styles.rail}>
+      <NavHint />
       <div className={styles.hint} />
       <nav className={styles.panel}>
         <img
