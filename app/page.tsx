@@ -20,10 +20,6 @@ export default function Home() {
       <div className={styles.heroCenter}>
         <p className={styles.heroSaying}>AVDE·SEMEL</p>
       </div>
-
-      <div className={styles.heroText}>
-        <h1 className={styles.heroName}>jeremy ro</h1>
-      </div>
     </section>
   );
 }

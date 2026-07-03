@@ -34,6 +34,7 @@ export default function NavRail() {
             </li>
           ))}
         </ul>
+        <p className={styles.name}>jeremy ro</p>
       </nav>
     </div>
   );

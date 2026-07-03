@@ -48,22 +48,6 @@
   text-align: center;
 }
 
-.heroText {
-  position: absolute;
-  bottom: 3rem;
-  left: 3rem;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.heroName {
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.35em;
-  color: #000000;
-  margin: 0;
-}
-
 .scrollHint {
   position: absolute;
   bottom: 2.75rem;
@@ -102,16 +86,6 @@
     font-size: clamp(1.05rem, 6.5vw, 1.75rem);
     letter-spacing: 0.02em;
     padding: 0 1rem;
-  }
-
-  .heroText {
-    bottom: 1.5rem;
-    left: 1.5rem;
-  }
-
-  .heroName {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
   }
 
   .scrollHint {

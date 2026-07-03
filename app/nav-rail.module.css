@@ -97,6 +97,14 @@
   gap: 0.9rem;
 }
 
+.name {
+  margin: auto 0 0;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  color: #000000;
+}
+
 .link {
   font-size: 1rem;
   font-weight: 400;
