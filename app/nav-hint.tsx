@@ -24,7 +24,7 @@ export default function NavHint() {
     };
 
     window.addEventListener("mousemove", onMove);
-    const timer = setTimeout(finish, 10000);
+    const timer = setTimeout(finish, 3000);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
@@ -37,7 +37,7 @@ export default function NavHint() {
   return (
     <div className={styles.notifier} role="status">
       <span className={styles.notifierArrow}>←</span>
-      <span>drag to the left edge for the menu</span>
+      <span>point here</span>
     </div>
   );
 }
