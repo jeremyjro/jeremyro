@@ -7,7 +7,7 @@ export default function NavHint() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("navHintSeen")) return;
+    if (sessionStorage.getItem("navHintSeen")) return;
     if (window.matchMedia("(max-width: 640px)").matches) return;
 
     setVisible(true);
@@ -17,18 +17,16 @@ export default function NavHint() {
       if (done) return;
       done = true;
       setVisible(false);
-      localStorage.setItem("navHintSeen", "1");
+      sessionStorage.setItem("navHintSeen", "1");
     };
     const onMove = (e: MouseEvent) => {
       if (e.clientX <= 24) finish();
     };
 
     window.addEventListener("mousemove", onMove);
-    const timer = setTimeout(finish, 3000);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
-      clearTimeout(timer);
     };
   }, []);
 
@@ -37,7 +35,7 @@ export default function NavHint() {
   return (
     <div className={styles.notifier} role="status">
       <span className={styles.notifierArrow}>←</span>
-      <span>point here</span>
+      <span>here</span>
     </div>
   );
 }
