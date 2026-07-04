@@ -81,8 +81,6 @@
 }
 
 .dateCol {
-  border-left: 1px solid #d4cdbf;
-  padding-left: 1.25rem;
   white-space: nowrap;
 }
 
@@ -100,8 +98,6 @@
 
   .dateCol {
     order: -1;
-    border-left: none;
-    padding-left: 0;
   }
 
   .date {
