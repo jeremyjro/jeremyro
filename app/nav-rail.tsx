@@ -4,7 +4,7 @@ import NavHint from "./nav-hint";
 const LINKS = [
   { label: "jro", href: "/" },
   { label: "work", href: "/work" },
-  { label: "projects", href: "/lexie" },
+  { label: "projects", href: "/projects" },
   { label: "writing", href: "/essays" },
 ];
 
