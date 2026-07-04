@@ -23,7 +23,7 @@ const PROJECTS: Project[] = [
     date: "June 2026",
   },
   {
-    name: "PRM",
+    name: "Personal Relationship Management AI",
     oneLiner:
       "A personal relationship manager that helps you remember and nurture the people who matter.",
     date: "June 2026",
