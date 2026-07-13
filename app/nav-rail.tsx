@@ -5,7 +5,7 @@ import styles from "./nav-rail.module.css";
 import NavHint from "./nav-hint";
 
 const LINKS = [
-  { label: "jro", href: "/" },
+  { label: "manifesto", href: "/manifesto" },
   { label: "work", href: "/work" },
   { label: "projects", href: "/projects" },
   { label: "writing", href: "/essays" },
