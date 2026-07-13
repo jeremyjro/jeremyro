@@ -26,7 +26,7 @@ const PROJECTS: Project[] = [
     name: "Nigel",
     oneLiner:
       "Your personal assistant that reminds you when you need to catch up with friends.",
-    date: "June 2026",
+    date: "in-progress",
     github: "https://github.com/jeremyjro/PRM",
   },
 ];
