@@ -22,7 +22,8 @@ const ROLES: Role[] = [
     oneLiner: "AI-native B2B content agency",
     meta: "Founding Growth Lead · Employee No. 2 · San Francisco",
     impact: [
-      "Grew annualized revenue from $0 to $3M",
+      "Sourced $1.1M in directly attributable closed-won revenue",
+      "Grew annualized revenue from $0 to $XM",
       "Drove 300+ sales-qualified leads and $XXM in pipeline",
     ],
     date: "Jun 2025 – Jun 2026",
