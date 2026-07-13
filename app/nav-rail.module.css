@@ -7,6 +7,20 @@
   z-index: 200;
 }
 
+.railOpen .panel {
+  transform: translateX(0);
+}
+
+.railOpen .hint {
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .rail {
+    width: 28px;
+  }
+}
+
 .hint {
   position: absolute;
   top: 50%;
