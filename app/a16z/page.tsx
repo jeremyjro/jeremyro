@@ -154,6 +154,37 @@ export default function A16zPage() {
               All content is posted publicly on our LinkedIn profiles — click through to see the live posts.
             </p>
 
+            <p className={styles.caseProfileSubhead}>Other client accounts</p>
+            <ul className={styles.caseProfiles}>
+              <li>
+                <strong>Sahaj Garg — Founder/CTO, Wispr Flow</strong>{" "}
+                <a href="https://www.linkedin.com/in/sahajgarg/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/sahajgarg
+                </a>
+                <br />
+                December 2025 – March 2026
+              </li>
+              <li>
+                <strong>Andrew Ettinger — CEO, Hume AI</strong>{" "}
+                <a href="https://www.linkedin.com/in/andrewettinger23/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/andrewettinger23
+                </a>
+                <br />
+                January 2025 – present
+              </li>
+              <li>
+                <strong>Conor Brennan-Burke — Founder/CEO, Hyperspell</strong>{" "}
+                <a href="https://www.linkedin.com/in/conorbrennanburke/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/conorbrennanburke
+                </a>
+                <br />
+                November 2025 – present
+              </li>
+            </ul>
+            <p className={styles.caseProfileNote}>
+              These accounts were written for by Content Engineers Jeremy coached using his content frameworks.
+            </p>
+
             <div className={styles.caseStudy}>
               <h4 className={styles.caseTitle}>Case study: Services, the new software</h4>
               <p className={styles.caseLink}>

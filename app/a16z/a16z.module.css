@@ -55,6 +55,14 @@
   margin-bottom: 1.25rem;
 }
 
+.caseProfileSubhead {
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b5afa6;
+  margin-bottom: 0.625rem;
+}
+
 .caseStudy {
   margin-top: 1rem;
 }
