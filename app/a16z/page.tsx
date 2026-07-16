@@ -232,7 +232,7 @@ export default function A16zPage() {
             </div>
           </div>
 
-          <p className={styles.caseProfileSubhead}>Other media created</p>
+          <p className={`${styles.caseProfileSubhead} ${styles.mediaSubhead}`}>Other media created</p>
 
           <div className={styles.workBlock}>
             <h3 className={styles.workTitle}>X</h3>
