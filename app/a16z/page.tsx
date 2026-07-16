@@ -92,7 +92,7 @@ export default function A16zPage() {
               <div className={styles.funnelStageTop}>Top</div>
             </div>
             <p className={styles.funnelDesc}>
-              Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each.
+              Wrote LinkedIn posts for my account (1.8M impressions) and Eric&apos;s, CEO of Virio (2.3M impressions), driving follower growth on both.
             </p>
 
             <div className={styles.funnelStageCol}>
