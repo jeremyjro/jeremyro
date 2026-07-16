@@ -137,12 +137,12 @@ export default function A16zPage() {
               <a href="https://www.linkedin.com/in/jeremyro/" target="_blank" rel="noopener noreferrer">
                 (linkedin.com/in/jeremyro)
               </a>{" "}
-              — writing since June 2025 to present.
+              — 0 → 8.6k followers since June 2025.
               Eric Lay (Virio CEO){" "}
               <a href="https://www.linkedin.com/in/ericlay-virio/" target="_blank" rel="noopener noreferrer">
                 (linkedin.com/in/ericlay-virio)
               </a>{" "}
-              — ghostwritten by Jeremy, July 2025 to April 2026.
+              — 25k → 42k followers, ghostwritten by Jeremy from July 2025 to April 2026.
             </p>
 
             <div className={styles.caseStudy}>
