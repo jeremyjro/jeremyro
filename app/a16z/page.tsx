@@ -110,18 +110,18 @@ export default function A16zPage() {
             </p>
           </div>
 
-          <p className={styles.sectionSubtitle}>Product timeline</p>
+          <p className={styles.sectionSubtitle}>Offering timeline</p>
           <ul className={styles.timeline}>
             <li>
               <span className={styles.timelineDate}>June 2025 – Aug 2025</span>
               <span className={styles.timelineDesc}>
-                <strong>Product 1</strong> (video content on LinkedIn): $0–$840k ARR, then pivoted back to $0.
+                <strong>Offering 1</strong> (video content on LinkedIn): $0–$840k ARR, then pivoted back to $0.
               </span>
             </li>
             <li>
               <span className={styles.timelineDate}>Oct 2025 – June 2026</span>
               <span className={styles.timelineDesc}>
-                <strong>Product 2</strong> (text + image content on LinkedIn as a Service): $0–$3M annualized revenue.
+                <strong>Offering 2</strong> (text + image content on LinkedIn as a Service): $0–$3M annualized revenue.
               </span>
             </li>
           </ul>
