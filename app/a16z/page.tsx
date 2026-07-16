@@ -35,7 +35,7 @@ export default function A16zPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Previously at Virio</h2>
           <p className={styles.sectionSubtitle}>Downstream pipeline attribution</p>
-          <ul className={styles.timeline}>
+          <ul className={styles.funnel}>
             <li>
               Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each
             </li>
@@ -45,6 +45,10 @@ export default function A16zPage() {
             <li>
               Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created
             </li>
+          </ul>
+
+          <p className={styles.sectionSubtitle}>Product timeline</p>
+          <ul className={styles.products}>
             <li>
               Product 1 (video content on LinkedIn): $0–$840k ARR, June 2025 – August 2025 (3 months), pivot back to $0
             </li>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import shared from "../page.module.css";
-import a16z from "../a16z/a16z.module.css";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Jeremy's LinkedIn Posts · Jeremy Ro",
@@ -10,10 +10,16 @@ export const metadata: Metadata = {
 interface Post {
   title: string;
   url: string;
+  image: string;
 }
 
-// Add Jeremy's LinkedIn posts here.
-const POSTS: Post[] = [];
+const POSTS: Post[] = [
+  {
+    title: "The 1-Person $1M GTM Funnel",
+    url: "https://www.linkedin.com/posts/jeremyro_218-demos-booked-in-january-1m-in-pipeline-activity-7455355878930677760-9n7A?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEMriSgBYaTpHjEZtxTCo6Awvm-g3zm7kRc",
+    image: "/jeremy-linkedin-posts/1-person-1m-gtm-funnel.png",
+  },
+];
 
 export default function JeremyLinkedInPosts() {
   return (
@@ -29,17 +35,26 @@ export default function JeremyLinkedInPosts() {
         {POSTS.length === 0 ? (
           <p className={shared.subMeta}>Posts to be added.</p>
         ) : (
-          <div className={a16z.linkList}>
+          <div className={styles.postList}>
             {POSTS.map((post) => (
-              <a
-                key={post.url}
-                className={a16z.link}
-                href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {post.title} ↗
-              </a>
+              <article key={post.url} className={styles.post}>
+                <div className={styles.postText}>
+                  <h2 className={styles.postTitle}>{post.title}</h2>
+                  <a
+                    className={styles.postLink}
+                    href={post.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {post.url} ↗
+                  </a>
+                </div>
+                <img
+                  className={styles.postImage}
+                  src={post.image}
+                  alt={post.title}
+                />
+              </article>
             ))}
           </div>
         )}
