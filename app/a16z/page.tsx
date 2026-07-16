@@ -163,19 +163,19 @@ export default function A16zPage() {
             <div className={styles.linkList}>
               <a
                 className={styles.link}
-                href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Personal video — 298k impressions ↗
-              </a>
-              <a
-                className={styles.link}
                 href="https://x.com/itsericlay/status/1973779551731020165?s=20"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Virio&apos;s launch video — 800k impressions ↗
+              </a>
+              <a
+                className={styles.link}
+                href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Personal video — 298k impressions ↗
               </a>
             </div>
           </div>
