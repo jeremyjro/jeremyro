@@ -63,7 +63,7 @@ export default function A16zPage() {
                 <strong>Analysis</strong> — Revisit the hypothesis, check whether inputs matched output, ask &ldquo;why?&rdquo; if not, and re-run with adjusted variables.
               </li>
               <li>
-                <strong>Enablement</strong> — Document the playbook, train the internal owner, and hand off so the engine keeps running.
+                <strong>Enablement / RevOps</strong> — Track data across iterations in the company&apos;s system of record, document the playbook, train the internal owner, and hand off so the engine keeps running.
               </li>
             </ul>
             <p className={styles.caveat}>
