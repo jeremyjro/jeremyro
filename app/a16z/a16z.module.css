@@ -45,26 +45,46 @@
   line-height: 1.5;
 }
 
-.impact {
+.timeline {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.impact li {
+.timeline li {
   position: relative;
-  padding-left: 1.25rem;
+  padding-left: 1.5rem;
   font-size: 0.875rem;
   line-height: 1.6;
   color: #2e2b28;
 }
 
-.impact li::before {
-  content: "→";
+.timeline li::before {
+  content: "";
   position: absolute;
   left: 0;
-  color: #c4b89a;
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #c4b89a;
+  z-index: 1;
+}
+
+.timeline li::after {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.5rem;
+  bottom: -1.25rem;
+  width: 1px;
+  background: #c4b89a;
+  z-index: 0;
+}
+
+.timeline li:last-child::after {
+  display: none;
 }
 
 .linkList {

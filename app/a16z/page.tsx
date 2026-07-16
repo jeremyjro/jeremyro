@@ -19,6 +19,42 @@ export default function A16zPage() {
         </p>
 
         <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Product Demo</h2>
+          <a
+            className={styles.link}
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Loom product demo (link to be added)"
+          >
+            Loom demo ↗
+          </a>
+          <p className={styles.note}>Add the Loom demo link here.</p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Previously at Virio</h2>
+          <p className={styles.sectionSubtitle}>Downstream pipeline attribution</p>
+          <ul className={styles.timeline}>
+            <li>
+              Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each
+            </li>
+            <li>
+              Turned those impressions into $16M in qualified pipeline — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders)
+            </li>
+            <li>
+              Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created
+            </li>
+            <li>
+              Product 1 (video content on LinkedIn): $0–$840k ARR, June 2025 – August 2025 (3 months), pivot back to $0
+            </li>
+            <li>
+              Product 2 (text + image content on LinkedIn as a Service): $0–$3M annualized revenue, October 2025 – June 2026 (8 months)
+            </li>
+          </ul>
+        </section>
+
+        <section className={styles.section}>
           <h2 className={styles.sectionTitle}>LinkedIn (best channel)</h2>
           <div className={styles.grid}>
             <div className={styles.card}>
@@ -44,39 +80,6 @@ export default function A16zPage() {
               </p>
             </div>
           </div>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Product Demo</h2>
-          <a
-            className={styles.link}
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Loom product demo (link to be added)"
-          >
-            Loom demo ↗
-          </a>
-          <p className={styles.note}>Add the Loom demo link here.</p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Previously at Virio</h2>
-          <p className={styles.sectionSubtitle}>Downstream pipeline attribution</p>
-          <ul className={styles.impact}>
-            <li>
-              $16M in qualified pipeline generated — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders)
-            </li>
-            <li>
-              Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created
-            </li>
-            <li>
-              Product 1 (video content on LinkedIn): $0–$840k ARR in 3 months, pivot back to $0
-            </li>
-            <li>
-              Product 2 (text + image content on LinkedIn as a Service): $0–$3M annualized revenue in 6 months
-            </li>
-          </ul>
         </section>
 
         <section className={styles.section}>
@@ -118,7 +121,7 @@ export default function A16zPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Running a Marathon Without Training ↗
+              Running a Marathon Without Training <strong>(filmed at 17 years old)</strong> ↗
             </a>
           </div>
         </section>

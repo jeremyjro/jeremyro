@@ -24,7 +24,7 @@ const ROLES: Role[] = [
     impact: [
       "Sourced $1.1M in directly attributable closed-won revenue",
       "Grew annualized revenue from $0 to $XM",
-      "Drove 300+ sales-qualified leads and $XXM in pipeline",
+      "Drove 400+ qualified meetings booked and $XXM in pipeline",
     ],
     date: "Jun 2025 – Jun 2026",
     proofHref: "https://www.linkedin.com/in/jeremyro/",
