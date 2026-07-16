@@ -2,6 +2,12 @@
   margin-top: 2.5rem;
 }
 
+.section + .section {
+  border-top: 1px solid #eeeae4;
+  padding-top: 2.5rem;
+  margin-top: 0;
+}
+
 .sectionTitle {
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
