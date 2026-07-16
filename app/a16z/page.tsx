@@ -128,74 +128,78 @@ export default function A16zPage() {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>LinkedIn (best channel)</h2>
-          <div className={styles.grid}>
-            <div className={styles.card}>
-              <p className={styles.cardName}>Jeremy Ro&apos;s Account</p>
-              <p className={styles.metric}>0 → 8.6k followers</p>
-              <p className={styles.metric}>2M impressions</p>
-              <p className={styles.metric}>
-                Examples of Posts Written:{" "}
-                <a className={styles.link} href="/jeremylinkedinposts">
-                  jeremyro.com/jeremylinkedinposts
-                </a>
-              </p>
-            </div>
-            <div className={styles.card}>
-              <p className={styles.cardName}>CEO of Virio</p>
-              <p className={styles.metric}>32k → 41k followers</p>
-              <p className={styles.metric}>2M impressions</p>
-              <p className={styles.metric}>
-                Examples of Posts Written:{" "}
-                <a className={styles.link} href="/ericlinkedinposts">
-                  jeremyro.com/ericlinkedinposts
-                </a>
-              </p>
+          <h2 className={styles.sectionTitle}>Examples of Work</h2>
+
+          <div className={styles.workBlock}>
+            <h3 className={styles.workTitle}>LinkedIn (best channel)</h3>
+            <div className={styles.grid}>
+              <div className={styles.card}>
+                <p className={styles.cardName}>Jeremy Ro&apos;s Account</p>
+                <p className={styles.metric}>0 → 8.6k followers</p>
+                <p className={styles.metric}>2M impressions</p>
+                <p className={styles.metric}>
+                  Examples of Posts Written:{" "}
+                  <a className={styles.link} href="/jeremylinkedinposts">
+                    jeremyro.com/jeremylinkedinposts
+                  </a>
+                </p>
+              </div>
+              <div className={styles.card}>
+                <p className={styles.cardName}>CEO of Virio</p>
+                <p className={styles.metric}>32k → 41k followers</p>
+                <p className={styles.metric}>2M impressions</p>
+                <p className={styles.metric}>
+                  Examples of Posts Written:{" "}
+                  <a className={styles.link} href="/ericlinkedinposts">
+                    jeremyro.com/ericlinkedinposts
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
-        </section>
 
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>X</h2>
-          <div className={styles.linkList}>
-            <a
-              className={styles.link}
-              href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Personal video — 298k impressions ↗
-            </a>
-            <a
-              className={styles.link}
-              href="https://x.com/itsericlay/status/1973779551731020165?s=20"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Virio&apos;s launch video — 800k impressions ↗
-            </a>
+          <div className={styles.workBlock}>
+            <h3 className={styles.workTitle}>X</h3>
+            <div className={styles.linkList}>
+              <a
+                className={styles.link}
+                href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Personal video — 298k impressions ↗
+              </a>
+              <a
+                className={styles.link}
+                href="https://x.com/itsericlay/status/1973779551731020165?s=20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Virio&apos;s launch video — 800k impressions ↗
+              </a>
+            </div>
           </div>
-        </section>
 
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Insta / YT</h2>
-          <div className={styles.linkList}>
-            <a
-              className={styles.link}
-              href="https://www.instagram.com/reel/DKXIlPBNrZH/?utm_source=ig_web_copy_link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              100 Days of Rejection-maxxing ↗
-            </a>
-            <a
-              className={styles.link}
-              href="https://www.youtube.com/watch?v=7l9MlpcVNck&t=12s"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Running a Marathon Without Training <strong>(filmed at 17 years old)</strong> ↗
-            </a>
+          <div className={styles.workBlock}>
+            <h3 className={styles.workTitle}>Insta / YT</h3>
+            <div className={styles.linkList}>
+              <a
+                className={styles.link}
+                href="https://www.instagram.com/reel/DKXIlPBNrZH/?utm_source=ig_web_copy_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                100 Days of Rejection-maxxing ↗
+              </a>
+              <a
+                className={styles.link}
+                href="https://www.youtube.com/watch?v=7l9MlpcVNck&t=12s"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Running a Marathon Without Training <strong>(filmed at 17 years old)</strong> ↗
+              </a>
+            </div>
           </div>
         </section>
       </div>

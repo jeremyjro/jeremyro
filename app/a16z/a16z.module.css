@@ -9,11 +9,24 @@
 }
 
 .sectionTitle {
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2e2b28;
+  margin-bottom: 1.25rem;
+}
+
+.workBlock + .workBlock {
+  margin-top: 2rem;
+}
+
+.workTitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #b5afa6;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .sectionSubtitle {
