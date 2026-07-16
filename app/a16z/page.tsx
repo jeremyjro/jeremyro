@@ -132,28 +132,87 @@ export default function A16zPage() {
 
           <div className={styles.workBlock}>
             <h3 className={styles.workTitle}>LinkedIn (best channel)</h3>
-            <div className={styles.grid}>
-              <div className={styles.card}>
-                <p className={styles.cardName}>Jeremy Ro&apos;s Account</p>
-                <p className={styles.metric}>0 → 8.6k followers</p>
-                <p className={styles.metric}>2M impressions</p>
-                <p className={styles.metric}>
-                  Examples of Posts Written:{" "}
-                  <a className={styles.link} href="/jeremylinkedinposts">
-                    jeremyro.com/jeremylinkedinposts
-                  </a>
+            <p className={styles.caseIntro}>
+              Jeremy Ro{" "}
+              <a href="https://www.linkedin.com/in/jeremyro/" target="_blank" rel="noopener noreferrer">
+                (linkedin.com/in/jeremyro)
+              </a>{" "}
+              — writing since June 2025 to present.
+              Eric Lay (Virio CEO){" "}
+              <a href="https://www.linkedin.com/in/ericlay-virio/" target="_blank" rel="noopener noreferrer">
+                (linkedin.com/in/ericlay-virio)
+              </a>{" "}
+              — ghostwritten by Jeremy, July 2025 to April 2026.
+            </p>
+
+            <div className={styles.caseStudy}>
+              <h4 className={styles.caseTitle}>Case study: Services, the new software</h4>
+              <p className={styles.caseLink}>
+                <a
+                  href="https://www.linkedin.com/posts/jeremyro_for-every-1-spent-on-software-6-is-spent-activity-7453898231887065088-2rMM?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAEMriSgBYaTpHjEZtxTCo6Awvm-g3zm7kRc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View the post on LinkedIn ↗
+                </a>
+              </p>
+
+              <div className={styles.caseStep}>
+                <h5 className={styles.caseStepTitle}>1. The post</h5>
+                <p className={styles.caseStepDesc}>
+                  A single post reframing the $1T “services as a software” opportunity.
                 </p>
+                <div className={styles.caseImages}>
+                  <img src="/a16z/case-studies/post-1.png" alt="LinkedIn post top half" className={styles.caseImage} />
+                  <img src="/a16z/case-studies/post-2.png" alt="LinkedIn post bottom half" className={styles.caseImage} />
+                </div>
               </div>
-              <div className={styles.card}>
-                <p className={styles.cardName}>CEO of Virio</p>
-                <p className={styles.metric}>32k → 41k followers</p>
-                <p className={styles.metric}>2M impressions</p>
-                <p className={styles.metric}>
-                  Examples of Posts Written:{" "}
-                  <a className={styles.link} href="/ericlinkedinposts">
-                    jeremyro.com/ericlinkedinposts
-                  </a>
+
+              <div className={styles.caseStep}>
+                <h5 className={styles.caseStepTitle}>2. Engagement from ICPs</h5>
+                <p className={styles.caseStepDesc}>
+                  Reactions and comments from founders and execs at Crosby, Hanover Park, and others.
                 </p>
+                <div className={styles.caseImages}>
+                  <img src="/a16z/case-studies/post-reactions.png" alt="Post with impressions and reactions" className={styles.caseImage} />
+                  <img src="/a16z/case-studies/reactions-hanover.png" alt="Engagement from Hanover Park CEO" className={styles.caseImage} />
+                  <img src="/a16z/case-studies/reactions-crosby.png" alt="Engagement from Crosby CEO" className={styles.caseImage} />
+                </div>
+              </div>
+
+              <div className={styles.caseStep}>
+                <h5 className={styles.caseStepTitle}>3. Inbound signal</h5>
+                <p className={styles.caseStepDesc}>
+                  Connection requests and DMs from ICPs who saw the content.
+                </p>
+                <div className={styles.caseImages}>
+                  <img src="/a16z/case-studies/inbound-kamron.png" alt="Kamron Khodjaev connection request" className={styles.caseImage} />
+                  <img src="/a16z/case-studies/inbound-crescendo.png" alt="VP of Marketing at Crescendo inbound message" className={styles.caseImage} />
+                </div>
+              </div>
+
+              <div className={styles.caseStep}>
+                <h5 className={styles.caseStepTitle}>4. Outbound</h5>
+                <p className={styles.caseStepDesc}>
+                  Direct outreach to prospects who engaged with the content, from both Jeremy and Eric.
+                </p>
+                <div className={styles.caseImages}>
+                  <img src="/a16z/case-studies/outbound-holden.png" alt="Outbound message to Holden Lewis" className={styles.caseImage} />
+                  <img src="/a16z/case-studies/outbound-eric-1.png" alt="Eric Lay outbound message to Nick Christensen" className={styles.caseImage} />
+                  <img src="/a16z/case-studies/outbound-eric-2.png" alt="Nick Christensen reply" className={styles.caseImage} />
+                </div>
+              </div>
+
+              <div className={styles.caseStep}>
+                <h5 className={styles.caseStepTitle}>5. AE calendar — meeting booked</h5>
+                <p className={styles.caseStepDesc}>Placeholder for calendar screenshot showing a meeting booked from this motion.</p>
+                <div className={styles.casePlaceholder}>Calendar screenshot coming soon.</div>
+              </div>
+
+              <div className={styles.caseStep}>
+                <h5 className={styles.caseStepTitle}>6. Closed won — revenue confirmation</h5>
+                <p className={styles.caseStepDesc}>Placeholder for closed-won / revenue confirmation message.</p>
+                <div className={styles.casePlaceholder}>Closed-won confirmation coming soon.</div>
               </div>
             </div>
           </div>

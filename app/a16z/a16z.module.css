@@ -29,6 +29,90 @@
   margin-bottom: 0.75rem;
 }
 
+.caseIntro {
+  font-size: 0.8125rem;
+  color: #6f6961;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.caseIntro a {
+  color: #6f6961;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.caseStudy {
+  margin-top: 1rem;
+}
+
+.caseTitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #2e2b28;
+  margin-bottom: 0.25rem;
+}
+
+.caseLink {
+  font-size: 0.8125rem;
+  margin-bottom: 1.5rem;
+}
+
+.caseLink a {
+  color: #6f6961;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.caseStep {
+  margin-top: 1.75rem;
+}
+
+.caseStep:first-child {
+  margin-top: 0;
+}
+
+.caseStepTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2e2b28;
+  margin-bottom: 0.375rem;
+}
+
+.caseStepDesc {
+  font-size: 0.8125rem;
+  color: #6f6961;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.caseImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.caseImage {
+  max-height: 420px;
+  width: auto;
+  max-width: 100%;
+  border: 1px solid #eeeae4;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.casePlaceholder {
+  display: inline-block;
+  padding: 1rem 1.25rem;
+  border: 1px dashed #d0ccc4;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  color: #b5afa6;
+}
+
 .sectionSubtitle {
   font-size: 0.8125rem;
   color: #6f6961;
