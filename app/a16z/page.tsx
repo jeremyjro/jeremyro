@@ -229,19 +229,10 @@ export default function A16zPage() {
                 </div>
               </div>
 
-              <div className={styles.caseStep}>
-                <h5 className={styles.caseStepTitle}>5. AE calendar — meeting booked</h5>
-                <p className={styles.caseStepDesc}>Placeholder for calendar screenshot showing a meeting booked from this motion.</p>
-                <div className={styles.casePlaceholder}>Calendar screenshot coming soon.</div>
-              </div>
-
-              <div className={styles.caseStep}>
-                <h5 className={styles.caseStepTitle}>6. Closed won — revenue confirmation</h5>
-                <p className={styles.caseStepDesc}>Placeholder for closed-won / revenue confirmation message.</p>
-                <div className={styles.casePlaceholder}>Closed-won confirmation coming soon.</div>
-              </div>
             </div>
           </div>
+
+          <p className={styles.caseProfileSubhead}>Other pieces created</p>
 
           <div className={styles.workBlock}>
             <h3 className={styles.workTitle}>X</h3>
