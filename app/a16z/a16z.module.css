@@ -5,7 +5,7 @@
 .section + .section {
   border-top: 1px solid #eeeae4;
   padding-top: 2.5rem;
-  margin-top: 0;
+  margin-top: 1.5rem;
 }
 
 .sectionTitle {
