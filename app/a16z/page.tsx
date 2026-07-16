@@ -7,10 +7,19 @@ export const metadata: Metadata = {
   description: "Portfolio for a16z's New Media team — B2B demand generation, LinkedIn ghostwriting, and proof of work.",
 };
 
+const LOOM_URL = "#";
+
 export default function A16zPage() {
   return (
     <main className={shared.subPage}>
       <div className={shared.subInner}>
+        <img
+          src="/a16z-logo.jpg"
+          alt="a16z"
+          className={styles.logo}
+          width={40}
+          height={40}
+        />
         <a href="/" className={shared.backLink}>← home</a>
         <p className={shared.subKicker}>one-pager</p>
         <h1 className={shared.subTitle}>A16Z Forward Deployed Marketer</h1>
@@ -19,41 +28,92 @@ export default function A16zPage() {
         </p>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Product Demo</h2>
-          <a
-            className={styles.link}
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Loom product demo (link to be added)"
-          >
-            Loom demo ↗
-          </a>
-          <p className={styles.note}>Add the Loom demo link here.</p>
+          <h2 className={styles.sectionTitle}>Proposal</h2>
+          <div className={styles.proposal}>
+            <h3 className={styles.proposalHead}>What</h3>
+            <p className={styles.proposalText}>
+              Forward-deployed growth lead for a16z B2B portcos. I embed, build the LinkedIn demand-generation engine, upskill the internal owner, and transition out once it is self-sustaining.
+            </p>
+
+            <h3 className={styles.proposalHead}>Why</h3>
+            <p className={styles.proposalText}>
+              Founder-led LinkedIn is the highest-leverage go-direct channel, but most founders lack the bandwidth, marketing instinct, and time to run it themselves — and most portcos can&apos;t yet hire an internal operator who can own it end to end.
+            </p>
+
+            <h3 className={styles.proposalHead}>How</h3>
+            <p className={styles.proposalText}>
+              A modular engine made of five parts:
+            </p>
+            <ul className={styles.engine}>
+              <li>
+                <strong>Planning</strong> — Define the ICP, hypothesize a concrete outcome, and set an actionable roadmap.
+              </li>
+              <li>
+                <strong>Content</strong> — Strategize angles, interview executives, produce posts, and manage engagement.
+              </li>
+              <li>
+                <strong>Outbound</strong> — Capture leads, qualify intent, and run targeted campaigns.
+              </li>
+              <li>
+                <strong>Analysis</strong> — Revisit the hypothesis, check whether inputs matched output, ask &ldquo;why?&rdquo; if not, and re-run with adjusted variables.
+              </li>
+              <li>
+                <strong>Enablement</strong> — Document the playbook, train the internal owner, and hand off so the engine keeps running.
+              </li>
+            </ul>
+            <p className={styles.caveat}>
+              We only install the modules the portco actually needs.
+            </p>
+            <p className={styles.demoCallout}>
+              The engine runs on a Content Orchestration Platform I built.{" "}
+              <a
+                className={styles.link}
+                href={LOOM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Watch the Loom demo ↗
+              </a>{" "}
+              to see how it lets one forward-deployed marketer cover 2× or more of the accounts a non-agentic FDM could.
+            </p>
+          </div>
         </section>
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Previously at Virio</h2>
           <p className={styles.sectionSubtitle}>Downstream pipeline attribution</p>
-          <ul className={styles.funnel}>
-            <li>
-              Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each
-            </li>
-            <li>
-              Turned those impressions into $16M in qualified pipeline — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders)
-            </li>
-            <li>
-              Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created
-            </li>
-          </ul>
+          <div className={styles.funnelWrap}>
+            <img
+              className={styles.funnelImage}
+              src="/jeremy-linkedin-posts/1-person-1m-gtm-funnel.png"
+              alt="1-person $1M GTM funnel"
+            />
+            <ul className={styles.funnelList}>
+              <li>
+                Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each
+              </li>
+              <li>
+                Turned those impressions into $16M in qualified pipeline — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders)
+              </li>
+              <li>
+                Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created
+              </li>
+            </ul>
+          </div>
 
           <p className={styles.sectionSubtitle}>Product timeline</p>
-          <ul className={styles.products}>
+          <ul className={styles.timeline}>
             <li>
-              Product 1 (video content on LinkedIn): $0–$840k ARR, June 2025 – August 2025 (3 months), pivot back to $0
+              <span className={styles.timelineDate}>June 2025 – Aug 2025</span>
+              <span className={styles.timelineDesc}>
+                <strong>Product 1</strong> (video content on LinkedIn): $0–$840k ARR, then pivoted back to $0.
+              </span>
             </li>
             <li>
-              Product 2 (text + image content on LinkedIn as a Service): $0–$3M annualized revenue, October 2025 – June 2026 (8 months)
+              <span className={styles.timelineDate}>Oct 2025 – June 2026</span>
+              <span className={styles.timelineDesc}>
+                <strong>Product 2</strong> (text + image content on LinkedIn as a Service): $0–$3M annualized revenue.
+              </span>
             </li>
           </ul>
         </section>
