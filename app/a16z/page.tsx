@@ -30,14 +30,19 @@ export default function A16zPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Proposal</h2>
           <div className={styles.proposal}>
-            <h3 className={styles.proposalHead}>What</h3>
+            <h3 className={styles.proposalHead}>Problem</h3>
+            <p className={styles.proposalText}>
+              Founder, executive, and employee-led LinkedIn content can be a powerful go-direct channel. But standing it up internally usually runs into the same problems: lack of time, lack of people, and lack of deep marketing know-how.
+            </p>
+
+            <h3 className={styles.proposalHead}>Solution</h3>
             <p className={styles.proposalText}>
               Forward-deployed growth lead for a16z B2B portcos. I embed, build the LinkedIn demand-generation engine, upskill the internal owner, and transition out once it is self-sustaining.
             </p>
 
             <h3 className={styles.proposalHead}>Why</h3>
             <p className={styles.proposalText}>
-              Founder-led LinkedIn is the highest-leverage go-direct channel, but most founders lack the bandwidth, marketing instinct, and time to run it themselves — and most portcos can&apos;t yet hire an internal operator who can own it end to end.
+              LinkedIn is a high-leverage go-direct channel for B2B companies — it compounds brand and demand generation at the same time.
             </p>
 
             <h3 className={styles.proposalHead}>How</h3>
