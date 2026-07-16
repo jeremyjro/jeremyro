@@ -99,7 +99,7 @@ export default function A16zPage() {
               <div className={styles.funnelStageMid}>Middle</div>
             </div>
             <p className={styles.funnelDesc}>
-              Turned those impressions into $16M in qualified pipeline — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders).
+              Turned those impressions into $16M in qualified pipeline — the equivalent of 300+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders).
             </p>
 
             <div className={styles.funnelStageCol}>
