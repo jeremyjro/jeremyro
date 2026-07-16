@@ -24,7 +24,7 @@ export default function A16zPage() {
         <p className={shared.subKicker}>one-pager</p>
         <h1 className={shared.subTitle}>A16Z Forward Deployed Marketer</h1>
         <p className={shared.subCopy}>
-          Looking to join as a New Media IC. More specifically on the B2B Demand Generation side (via LinkedIn), ghostwriting for Founders and Executives.
+          Jeremy to join a16z as a Forward Deployed Growth Lead.
         </p>
 
         <section className={styles.section}>
