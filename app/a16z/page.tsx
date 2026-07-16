@@ -3,7 +3,7 @@ import shared from "../page.module.css";
 import styles from "./a16z.module.css";
 
 export const metadata: Metadata = {
-  title: "A16Z Forward Deployed Marketer · Jeremy Ro",
+  title: "A16Z Forward Deployed GTM Team · Jeremy Ro",
   description: "Portfolio for a16z's New Media team — B2B demand generation, LinkedIn ghostwriting, and proof of work.",
 };
 
@@ -22,7 +22,7 @@ export default function A16zPage() {
         />
         <a href="/" className={shared.backLink}>← home</a>
         <p className={shared.subKicker}>one-pager</p>
-        <h1 className={shared.subTitle}>A16Z Forward Deployed Marketer</h1>
+        <h1 className={shared.subTitle}>A16Z Forward Deployed GTM Team</h1>
         <p className={shared.subCopy}>
           Jeremy to join a16z as a Forward Deployed Growth Lead. More specifically on the B2B Demand Generation side (via LinkedIn).
         </p>
