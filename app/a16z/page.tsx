@@ -82,23 +82,27 @@ export default function A16zPage() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Previously at Virio</h2>
           <p className={styles.sectionSubtitle}>Downstream pipeline attribution</p>
-          <div className={styles.funnelWrap}>
-            <img
-              className={styles.funnelImage}
-              src="/jeremy-linkedin-posts/1-person-1m-gtm-funnel.png"
-              alt="1-person $1M GTM funnel"
-            />
-            <ul className={styles.funnelList}>
-              <li>
-                Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each
-              </li>
-              <li>
-                Turned those impressions into $16M in qualified pipeline — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders)
-              </li>
-              <li>
-                Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created
-              </li>
-            </ul>
+          <div className={styles.funnelRows}>
+            <div className={styles.funnelStageCol}>
+              <div className={styles.funnelStageTop}>Top</div>
+            </div>
+            <p className={styles.funnelDesc}>
+              Wrote / ghostwrote LinkedIn posts for both my account and Eric&apos;s (CEO of Virio), driving follower growth and 2M+ impressions each.
+            </p>
+
+            <div className={styles.funnelStageCol}>
+              <div className={styles.funnelStageMid}>Middle</div>
+            </div>
+            <p className={styles.funnelDesc}>
+              Turned those impressions into $16M in qualified pipeline — the equivalent of 400+ qualified meetings booked with ICP (VPs and C-suite Marketing &amp; Sales Leaders).
+            </p>
+
+            <div className={styles.funnelStageCol}>
+              <div className={styles.funnelStageBot}>Bottom</div>
+            </div>
+            <p className={styles.funnelDesc}>
+              Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created.
+            </p>
           </div>
 
           <p className={styles.sectionSubtitle}>Product timeline</p>
