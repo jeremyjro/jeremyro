@@ -3,7 +3,7 @@ import shared from "../page.module.css";
 import styles from "./a16z.module.css";
 
 export const metadata: Metadata = {
-  title: "New Media IC · Jeremy Ro",
+  title: "A16Z Forward Deployed Marketer · Jeremy Ro",
   description: "Portfolio for a16z's New Media team — B2B demand generation, LinkedIn ghostwriting, and proof of work.",
 };
 
@@ -12,8 +12,8 @@ export default function A16zPage() {
     <main className={shared.subPage}>
       <div className={shared.subInner}>
         <a href="/" className={shared.backLink}>← home</a>
-        <p className={shared.subKicker}>A16Z</p>
-        <h1 className={shared.subTitle}>New Media IC</h1>
+        <p className={shared.subKicker}>one-pager</p>
+        <h1 className={shared.subTitle}>A16Z Forward Deployed Marketer</h1>
         <p className={shared.subCopy}>
           Looking to join as a New Media IC. More specifically on the B2B Demand Generation side (via LinkedIn), ghostwriting for Founders and Executives.
         </p>
