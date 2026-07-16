@@ -29,17 +29,30 @@
   margin-bottom: 0.75rem;
 }
 
-.caseIntro {
+.caseProfiles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  color: #6f6961;
+  line-height: 1.5;
+}
+
+.caseProfiles li {
+  margin-bottom: 0.625rem;
+}
+
+.caseProfiles a {
+  color: #6f6961;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.caseProfileNote {
   font-size: 0.8125rem;
   color: #6f6961;
   line-height: 1.5;
   margin-bottom: 1.25rem;
-}
-
-.caseIntro a {
-  color: #6f6961;
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 .caseStudy {

@@ -132,17 +132,26 @@ export default function A16zPage() {
 
           <div className={styles.workBlock}>
             <h3 className={styles.workTitle}>LinkedIn (best channel)</h3>
-            <p className={styles.caseIntro}>
-              Jeremy Ro{" "}
-              <a href="https://www.linkedin.com/in/jeremyro/" target="_blank" rel="noopener noreferrer">
-                (linkedin.com/in/jeremyro)
-              </a>{" "}
-              — 0 → 8.6k followers since June 2025.
-              Eric Lay (Virio CEO){" "}
-              <a href="https://www.linkedin.com/in/ericlay-virio/" target="_blank" rel="noopener noreferrer">
-                (linkedin.com/in/ericlay-virio)
-              </a>{" "}
-              — 25k → 42k followers, ghostwritten by Jeremy from July 2025 to April 2026.
+            <ul className={styles.caseProfiles}>
+              <li>
+                <strong>Jeremy Ro</strong> —{" "}
+                <a href="https://www.linkedin.com/in/jeremyro/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/jeremyro
+                </a>
+                <br />
+                0 → 8.6k followers, June 2025 – present
+              </li>
+              <li>
+                <strong>Eric Lay (Virio CEO)</strong> —{" "}
+                <a href="https://www.linkedin.com/in/ericlay-virio/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/ericlay-virio
+                </a>
+                <br />
+                25k → 42k followers, ghostwritten by Jeremy, July 2025 – April 2026
+              </li>
+            </ul>
+            <p className={styles.caseProfileNote}>
+              All content is posted publicly on our LinkedIn profiles — click through to see the live posts.
             </p>
 
             <div className={styles.caseStudy}>
