@@ -160,7 +160,7 @@ export default function A16zPage() {
                 <strong>Founder/CTO</strong>, voice AI — $2.7B valuation, $250M raised
               </li>
               <li>
-                <strong>CEO</strong>, emotional AI — $450M valuation, $220M raised
+                <strong>CEO</strong>, emotional AI — $1.1B valuation, $220M raised
               </li>
               <li>
                 <strong>Founder/CEO</strong>, AI workflow automation — $8M raised from YC
