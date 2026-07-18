@@ -93,7 +93,7 @@ export default function PortfolioPage() {
               <div className={styles.funnelStageBot}>Bottom</div>
             </div>
             <p className={styles.funnelDesc}>
-              Sourced $1.1M in closed-won revenue via the LinkedIn organic content + outbound playbook I created.
+              Sourced $1.1M in closed-won revenue.
             </p>
           </div>
 
