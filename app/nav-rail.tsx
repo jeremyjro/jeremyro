@@ -7,7 +7,6 @@ import NavHint from "./nav-hint";
 const LINKS = [
   { label: "manifesto", href: "/manifesto" },
   { label: "work", href: "/work" },
-  { label: "portfolio", href: "/portfolio" },
   { label: "projects", href: "/projects" },
   { label: "writing", href: "/essays" },
 ];
