@@ -30,11 +30,6 @@ export default function PortfolioPage() {
 
             <h3 className={styles.proposalHead}>Solution</h3>
             <p className={styles.proposalText}>
-              Forward-deployed growth lead for B2B companies. I embed, build the LinkedIn demand-generation engine, upskill the internal owner, and transition out once it is self-sustaining.
-            </p>
-
-            <h3 className={styles.proposalHead}>Why</h3>
-            <p className={styles.proposalText}>
               LinkedIn is a high-leverage go-direct channel for B2B companies — it compounds brand and demand generation at the same time.
             </p>
 
@@ -71,11 +66,7 @@ export default function PortfolioPage() {
                 rel="noopener noreferrer"
               >
                 Watch the Loom demo ↗
-              </a>{" "}
-              to see how it lets one forward-deployed marketer cover 2× or more of the accounts a non-agentic FDM could.
-            </p>
-            <p className={styles.proposalText}>
-              That way it gives them context about how I do my work.
+              </a>
             </p>
           </div>
         </section>
