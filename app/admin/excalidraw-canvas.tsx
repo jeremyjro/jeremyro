@@ -23,13 +23,14 @@ interface SceneData {
 export default function ExcalidrawCanvas() {
   const [data, setData] = useState<SceneData | null>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasInteracted = useRef(false);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setData(JSON.parse(raw));
+      setData(raw ? JSON.parse(raw) : {});
     } catch {
-      // ignore corrupt storage
+      setData({});
     }
   }, []);
 
@@ -41,6 +42,7 @@ export default function ExcalidrawCanvas() {
   );
 
   const handleChange = (elements: readonly any[], appState: any) => {
+    if (!hasInteracted.current) return;
     if (saveTimer.current) clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => {
       try {
@@ -70,6 +72,9 @@ export default function ExcalidrawCanvas() {
       <Excalidraw
         initialData={data.elements ? data : undefined}
         onChange={handleChange}
+        onPointerDown={() => {
+          hasInteracted.current = true;
+        }}
         theme="light"
         gridModeEnabled={false}
       />
