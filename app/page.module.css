@@ -39,7 +39,7 @@
 }
 
 .heroSaying {
-  font-size: clamp(1rem, 3.2vw, 2.2rem);
+  font-size: clamp(0.7rem, 2.24vw, 1.54rem);
   font-weight: 450;
   letter-spacing: 0.03em;
   word-spacing: -0.1em;
@@ -83,7 +83,7 @@
   }
 
   .heroSaying {
-    font-size: clamp(1.05rem, 6.5vw, 1.75rem);
+    font-size: clamp(0.74rem, 4.55vw, 1.23rem);
     letter-spacing: 0.02em;
     padding: 0 1rem;
   }
