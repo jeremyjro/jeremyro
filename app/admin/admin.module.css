@@ -371,3 +371,49 @@
   color: #8b6f47;
   border-bottom: 1px solid #c4b89a;
 }
+
+/* ── Admin tabs ── */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 1040px;
+  margin: 0 auto 1.5rem;
+}
+
+.tab {
+  background: #fff;
+  border: 1px solid #d4cdbf;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8125rem;
+  color: #6f6961;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.tab:hover {
+  border-color: #8b6f47;
+  color: #8b6f47;
+}
+
+.tabActive {
+  background: #2e2b28;
+  color: #fff;
+  border-color: #2e2b28;
+}
+
+/* ── Excalidraw canvas ── */
+.canvasWrap {
+  height: 70vh;
+  min-height: 500px;
+  border: 1px solid #e6e1d9;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.canvasWrap > * {
+  flex: 1 1 auto;
+  min-height: 0;
+}

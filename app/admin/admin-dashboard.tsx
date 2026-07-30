@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 import Editor from "./editor";
+import ExcalidrawCanvas from "./excalidraw-canvas";
 import styles from "./admin.module.css";
 
 interface ListRow {
@@ -42,6 +43,7 @@ export default function AdminDashboard({
   const [formKey, setFormKey] = useState(0);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+  const [view, setView] = useState<"essays" | "canvas">("essays");
 
   const loadRows = useCallback(async () => {
     const { data, error } = await supabase
@@ -65,9 +67,11 @@ export default function AdminDashboard({
     setHtml("");
     setStatus("");
     setFormKey((k) => k + 1);
+    setView("essays");
   };
 
   const selectEssay = async (id: string) => {
+    setView("essays");
     setStatus("");
     const { data, error } = await supabase
       .from("essays")
@@ -175,6 +179,23 @@ export default function AdminDashboard({
         </button>
       </header>
 
+      <nav className={styles.tabs} aria-label="Admin sections">
+        <button
+          type="button"
+          className={`${styles.tab} ${view === "essays" ? styles.tabActive : ""}`}
+          onClick={() => setView("essays")}
+        >
+          Writing
+        </button>
+        <button
+          type="button"
+          className={`${styles.tab} ${view === "canvas" ? styles.tabActive : ""}`}
+          onClick={() => setView("canvas")}
+        >
+          Brainstorm
+        </button>
+      </nav>
+
       <div className={styles.grid}>
         <aside className={styles.sidebar}>
           <button type="button" className={styles.newBtn} onClick={resetForm}>
@@ -229,69 +250,75 @@ export default function AdminDashboard({
         </aside>
 
         <section className={styles.formArea}>
-          <input
-            className={styles.titleInput}
-            placeholder="Title"
-            value={title}
-            onChange={(e) => onTitleChange(e.target.value)}
-          />
-          <input
-            className={styles.subInput}
-            placeholder="Subtitle (optional)"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-          />
-          <div className={styles.metaRow}>
-            <label className={styles.metaField}>
-              <span>Author</span>
+          {view === "essays" ? (
+            <>
               <input
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
+                className={styles.titleInput}
+                placeholder="Title"
+                value={title}
+                onChange={(e) => onTitleChange(e.target.value)}
               />
-            </label>
-            <label className={styles.metaField}>
-              <span>Slug (URL)</span>
               <input
-                value={slug}
-                onChange={(e) => {
-                  setSlug(slugify(e.target.value));
-                  setSlugTouched(true);
-                }}
+                className={styles.subInput}
+                placeholder="Subtitle (optional)"
+                value={subtitle}
+                onChange={(e) => setSubtitle(e.target.value)}
               />
-            </label>
-          </div>
+              <div className={styles.metaRow}>
+                <label className={styles.metaField}>
+                  <span>Author</span>
+                  <input
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                  />
+                </label>
+                <label className={styles.metaField}>
+                  <span>Slug (URL)</span>
+                  <input
+                    value={slug}
+                    onChange={(e) => {
+                      setSlug(slugify(e.target.value));
+                      setSlugTouched(true);
+                    }}
+                  />
+                </label>
+              </div>
 
-          <Editor key={formKey} value={html} onChange={setHtml} />
+              <Editor key={formKey} value={html} onChange={setHtml} />
 
-          <div className={styles.actions}>
-            <button
-              type="button"
-              className={styles.secondaryBtn}
-              disabled={busy}
-              onClick={() => save(false)}
-            >
-              Save draft
-            </button>
-            <button
-              type="button"
-              className={styles.primaryBtn}
-              disabled={busy}
-              onClick={() => save(true)}
-            >
-              Publish
-            </button>
-            {slug && (
-              <a
-                className={styles.viewLink}
-                href={`/essays/${slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View →
-              </a>
-            )}
-          </div>
-          {status && <p className={styles.status}>{status}</p>}
+              <div className={styles.actions}>
+                <button
+                  type="button"
+                  className={styles.secondaryBtn}
+                  disabled={busy}
+                  onClick={() => save(false)}
+                >
+                  Save draft
+                </button>
+                <button
+                  type="button"
+                  className={styles.primaryBtn}
+                  disabled={busy}
+                  onClick={() => save(true)}
+                >
+                  Publish
+                </button>
+                {slug && (
+                  <a
+                    className={styles.viewLink}
+                    href={`/essays/${slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View →
+                  </a>
+                )}
+              </div>
+              {status && <p className={styles.status}>{status}</p>}
+            </>
+          ) : (
+            <ExcalidrawCanvas />
+          )}
         </section>
       </div>
     </div>
