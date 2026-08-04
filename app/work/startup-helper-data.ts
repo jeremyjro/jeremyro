@@ -4,7 +4,6 @@ export interface StartupCaseStudy {
   raised: string;
   investors: string;
   logo: string;
-  logoClass: string;
   description: string;
   work: string[];
 }
@@ -15,8 +14,7 @@ export const STARTUP_CASE_STUDIES: StartupCaseStudy[] = [
     name: "Mintlify",
     raised: "$45M Series B",
     investors: "a16z + Salesforce Ventures",
-    logo: "/startup-helper/mintlify.png",
-    logoClass: "mintlifyLogo",
+    logo: "/startup-helper/mintlify-card.png",
     description:
       "Documentation infrastructure for the teams building the next generation of software.",
     work: [
@@ -30,8 +28,7 @@ export const STARTUP_CASE_STUDIES: StartupCaseStudy[] = [
     name: "Reactor",
     raised: "$59M",
     investors: "Lightspeed Venture Partners",
-    logo: "/startup-helper/reactor.webp",
-    logoClass: "reactorLogo",
+    logo: "/startup-helper/reactor-card.png",
     description:
       "A developer platform for real-time generative video and interactive AI worlds.",
     work: [
@@ -45,8 +42,7 @@ export const STARTUP_CASE_STUDIES: StartupCaseStudy[] = [
     name: "Virio",
     raised: "raised $1M",
     investors: "angel funding",
-    logo: "/startup-helper/virio.svg",
-    logoClass: "virioLogo",
+    logo: "/startup-helper/virio-card.png",
     description:
       "An AI-native B2B content agency built around turning company context into market motion.",
     work: [
@@ -60,8 +56,7 @@ export const STARTUP_CASE_STUDIES: StartupCaseStudy[] = [
     name: "Ornn",
     raised: "$33M seed",
     investors: "a16z crypto-led",
-    logo: "/startup-helper/ornn.png",
-    logoClass: "ornnLogo",
+    logo: "/startup-helper/ornn-card.png",
     description:
       "Financial infrastructure for making compute capacity a more transparent marketplace.",
     work: [
