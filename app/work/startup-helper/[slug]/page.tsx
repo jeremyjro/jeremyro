@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   const study = STARTUP_CASE_STUDIES.find((item) => item.slug === slug);
 
   return {
-    title: study ? `${study.name} · Startup Helper` : "Startup Helper",
+    title: study ? `${study.name} · Company Helper` : "Company Helper",
     description: study?.description,
   };
 }
@@ -39,7 +39,7 @@ export default async function StartupHelperCaseStudy({ params }: CaseStudyPagePr
             className={startup.logo}
           />
         </div>
-        <p className={startup.detailKicker}>STARTUP HELPER / CASE STUDY</p>
+        <p className={startup.detailKicker}>COMPANY HELPER / CASE STUDY</p>
         <h1 className={startup.detailTitle}>{study.name}</h1>
         <p className={startup.detailFunding}>{study.raised} · {study.investors}</p>
         <p className={startup.detailDescription}>{study.description}</p>
