@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import styles from "../page.module.css";
 import work from "./work.module.css";
+import startup from "./startup-helper.module.css";
+import { STARTUP_CASE_STUDIES } from "./startup-helper-data";
 
 export const metadata: Metadata = {
   title: "Work · Jeremy Ro",
@@ -76,6 +78,38 @@ export default function WorkPage() {
             </section>
           ))}
         </div>
+
+        <section className={startup.section} aria-labelledby="startup-helper-title">
+          <p className={startup.kicker}>FOUNDER-LED GTM</p>
+          <h1 id="startup-helper-title" className={startup.title}>Startup Helper</h1>
+          <p className={startup.intro}>
+            I helped pre-Series B startup founders build organic, go-direct
+            social motions: founder-led content and founder-led go-to-market
+            systems that connected brand marketing to pipeline generation.
+          </p>
+
+          <div className={startup.carousel} aria-label="Startup Helper case studies">
+            {STARTUP_CASE_STUDIES.map((study) => (
+              <a
+                key={study.slug}
+                href={`/work/startup-helper/${study.slug}`}
+                className={startup.card}
+              >
+                <div className={startup.logoFrame}>
+                  <img
+                    src={study.logo}
+                    alt={`${study.name} logo`}
+                    className={`${startup.logo} ${startup[study.logoClass as keyof typeof startup]}`}
+                  />
+                </div>
+                <span className={startup.funding}>{study.raised} · {study.investors}</span>
+                <span className={startup.company}>
+                  {study.name} <span className={startup.arrow}>↗</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
