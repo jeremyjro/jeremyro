@@ -55,9 +55,8 @@ export default function WorkPage() {
           <p className={startup.kicker}>FOUNDER-LED GTM</p>
           <h2 id="company-helper-title" className={startup.title}>Company Helper</h2>
           <p className={startup.intro}>
-            I helped pre-Series B startup founders build organic, go-direct
-            social motions: founder-led content and founder-led go-to-market
-            systems that connected brand marketing to pipeline generation.
+            Helping companies build their go-direct marketing and sales
+            motions.
           </p>
 
           <div className={startup.carousel} aria-label="Company Helper case studies">
