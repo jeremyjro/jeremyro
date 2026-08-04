@@ -16,7 +16,7 @@ import cairosvg
 
 SRC = Path("public/startup-helper")
 CANVAS = 512
-GLYPH_RATIO = 0.18  # longest glyph dimension as a fraction of the canvas
+GLYPH_RATIO = 0.60  # longest glyph dimension as a fraction of the canvas
 BG = (12, 12, 12, 255)
 INK = (245, 242, 236)  # off-white used when recoloring dark wordmarks
 
