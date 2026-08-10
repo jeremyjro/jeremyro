@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
-
 .main {
   min-height: 100vh;
   background: #f7f6f2;
@@ -18,7 +16,6 @@
 }
 
 .eyebrow {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -28,7 +25,6 @@
 }
 
 .title {
-  font-family: 'DM Serif Display', Georgia, serif;
   font-size: clamp(36px, 5vw, 52px);
   font-weight: 400;
   line-height: 1.1;
@@ -38,7 +34,6 @@
 }
 
 .subtitle {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 14px;
   color: #8a8880;
   font-weight: 300;
@@ -55,7 +50,6 @@
 }
 
 .noteHeadline {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 13px;
   font-weight: 400;
   color: #444440;
@@ -63,7 +57,6 @@
 }
 
 .noteBody {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 13px;
   font-weight: 300;
   line-height: 1.65;
@@ -85,7 +78,6 @@
 }
 
 .noteList li {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 500;
   color: #111110;
@@ -102,7 +94,6 @@
 }
 
 .sectionTitle {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -150,7 +141,6 @@
 }
 
 .sliderLabel {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1.2px;
@@ -159,7 +149,6 @@
 }
 
 .sliderValue {
-  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 24px;
   color: #111110;
   letter-spacing: -0.3px;
@@ -194,7 +183,6 @@
 .sliderEnds {
   display: flex;
   justify-content: space-between;
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 10px;
   color: #b8b6ae;
   margin-top: 6px;
@@ -236,7 +224,6 @@
 }
 
 .resultLabel {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 1.2px;
@@ -246,7 +233,6 @@
 }
 
 .resultNum {
-  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 32px;
   letter-spacing: -0.5px;
   line-height: 1;
@@ -259,7 +245,6 @@
 }
 
 .resultSub {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 10px;
   color: #b8b6ae;
 }
@@ -272,7 +257,6 @@
 }
 
 .insightBox p {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 13px;
   line-height: 1.65;
   color: #444440;
@@ -291,7 +275,6 @@
 }
 
 .assumptions li {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 11px;
   font-weight: 300;
   color: #8a8880;
@@ -330,7 +313,6 @@
 }
 
 .sourceName {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 12px;
   font-weight: 500;
   color: #111110;
@@ -338,7 +320,6 @@
 }
 
 .badge {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 10px;
   font-weight: 600;
   color: #111110;
@@ -351,7 +332,6 @@
 }
 
 .sourceText {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 12.5px;
   line-height: 1.65;
   color: #666660;
@@ -366,7 +346,6 @@
 }
 
 .sourceLink {
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 10px;
   color: #8a8880;
   text-decoration: none;
@@ -391,7 +370,6 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 4px;
-  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 10px;
   color: #b8b6ae;
 }
