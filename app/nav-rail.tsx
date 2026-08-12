@@ -40,7 +40,7 @@ export default function NavRail() {
       <div className={styles.hint} />
       <nav className={styles.panel}>
         <img
-          src="/jeremy-face.jpg"
+          src="/pluto.png"
           alt="Jeremy Ro"
           className={styles.face}
           width={60}

@@ -13,7 +13,7 @@ const ENTRIES: Entry[] = [
     title: "Substack",
     href: "https://substack.com/@jeremyrooo",
     subtitle: "Live feed of posts",
-    icon: "/jeremy-face.jpg",
+    icon: "/pluto.png",
   },
   {
     title: "Essays",
