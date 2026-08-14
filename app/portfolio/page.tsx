@@ -13,6 +13,13 @@ export default function PortfolioPage() {
   return (
     <main className={shared.subPage}>
       <div className={shared.subInner}>
+        <img
+          src="/decagon-logo.png"
+          alt="Decagon"
+          className={styles.logo}
+          width={40}
+          height={40}
+        />
         <a href="/" className={shared.backLink}>← home</a>
         <p className={shared.subKicker}>portfolio</p>
         <h1 className={shared.subTitle}>Portfolio</h1>
@@ -21,7 +28,7 @@ export default function PortfolioPage() {
         </p>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Proposal</h2>
+          <h2 className={styles.sectionTitle}>Decagon LinkedIn &amp; X Proposal</h2>
           <div className={styles.proposal}>
             <h3 className={styles.proposalHead}>Problem</h3>
             <p className={styles.proposalText}>
@@ -144,13 +151,16 @@ export default function PortfolioPage() {
             <p className={styles.caseProfileSubhead}>Other accounts</p>
             <ul className={styles.caseProfiles}>
               <li>
-                <strong>Founder/CTO</strong>, voice AI — $2.7B valuation, $250M raised
+                <strong>Founder/CTO (anonymized)</strong>, voice AI — $2.7B valuation, $250M raised
               </li>
               <li>
-                <strong>CEO</strong>, emotional AI — $1.1B valuation, $220M raised
+                <a href="https://www.linkedin.com/in/andrewettinger23/" target="_blank" rel="noopener noreferrer">Andrew Ettinger</a> (CEO), Hume AI — $1.1B valuation, $220M raised
               </li>
               <li>
-                <strong>Founder/CEO</strong>, AI workflow automation — $8M raised from YC
+                <a href="https://www.linkedin.com/in/conorbrennanburke/" target="_blank" rel="noopener noreferrer">Connor Brennan-Burke</a> (Founder/CEO), AI workflow automation — $8M raised from YC
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/wayne-nelms/" target="_blank" rel="noopener noreferrer">Wayne Nelms</a>, Ornn ($33M Series A, a16z), Compute market
               </li>
             </ul>
             <p className={styles.caseProfileNote}>
