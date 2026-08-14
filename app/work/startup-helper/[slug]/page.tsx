@@ -32,13 +32,6 @@ export default async function StartupHelperCaseStudy({ params }: CaseStudyPagePr
     <main className={startup.detail}>
       <div className={startup.detailInner}>
         <a href="/work" className={styles.backLink}>← work</a>
-        <div className={startup.detailLogoFrame}>
-          <img
-            src={study.logo}
-            alt={`${study.name} logo`}
-            className={startup.logo}
-          />
-        </div>
         <p className={startup.detailKicker}>COMPANY HELPER / CASE STUDY</p>
         <h1 className={startup.detailTitle}>{study.name}</h1>
         <p className={startup.detailFunding}>{study.raised} · {study.investors}</p>

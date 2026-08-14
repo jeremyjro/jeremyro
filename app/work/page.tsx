@@ -15,7 +15,6 @@ interface Role {
   meta: string;
   impact: string[];
   date: string;
-  proofHref: string;
 }
 
 const ROLES: Role[] = [
@@ -29,7 +28,6 @@ const ROLES: Role[] = [
       "Drove 400+ qualified meetings booked and $XXM in pipeline",
     ],
     date: "Jun 2025 – Jun 2026",
-    proofHref: "https://www.linkedin.com/in/jeremyro/",
   },
   {
     company: "Vecova",
@@ -40,7 +38,6 @@ const ROLES: Role[] = [
       "20 minutes into my first shift, jumped in to save a 7-year-old from drowning",
     ],
     date: "20XX",
-    proofHref: "https://www.linkedin.com/in/jeremyro/",
   },
 ];
 
@@ -66,13 +63,6 @@ export default function WorkPage() {
                 href={`/work/startup-helper/${study.slug}`}
                 className={startup.card}
               >
-                <div className={startup.logoFrame}>
-                  <img
-                    src={study.logo}
-                    alt={`${study.name} logo`}
-                    className={startup.logo}
-                  />
-                </div>
                 <span className={startup.funding}>{study.raised} · {study.investors}</span>
                 <span className={startup.company}>
                   {study.name} <span className={startup.arrow}>↗</span>
@@ -94,14 +84,7 @@ export default function WorkPage() {
                     <li key={line}>{line}</li>
                   ))}
                 </ul>
-                <a
-                  href={role.proofHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={work.proof}
-                >
-                  proof of work ↗
-                </a>
+
               </div>
               <div className={work.dateCol}>
                 <span className={work.date}>{role.date}</span>
