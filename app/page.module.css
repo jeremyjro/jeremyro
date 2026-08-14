@@ -39,10 +39,10 @@
 }
 
 .heroSaying {
-  font-size: clamp(0.7rem, 2.24vw, 1.54rem);
-  font-weight: 450;
-  letter-spacing: 0.03em;
-  word-spacing: -0.1em;
+  font-size: clamp(0.62rem, 2.1vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  word-spacing: -0.08em;
   color: #000000;
   margin: 0;
   text-align: center;
@@ -83,7 +83,7 @@
   }
 
   .heroSaying {
-    font-size: clamp(0.74rem, 4.55vw, 1.23rem);
+    font-size: clamp(0.66rem, 4.2vw, 1.15rem);
     letter-spacing: 0.02em;
     padding: 0 1rem;
   }
@@ -112,8 +112,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  font-size: 0.8125rem;
-  line-height: 1.6;
+  font-size: 0.75rem;
+  line-height: 1.55;
   color: #2E2B28;
 }
 
@@ -144,14 +144,14 @@
 }
 
 .label {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   color: #B5AFA6;
 }
 
 .rule {
   color: #D4CDBF;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   line-height: 1;
   user-select: none;
 }
@@ -163,7 +163,7 @@
 }
 
 .link {
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: #2E2B28;
   transition: color 0.15s;
   display: block;
@@ -189,7 +189,7 @@
 .backLink {
   display: inline-block;
   margin-bottom: 4rem;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: #9A948C;
   transition: color 0.15s;
 }
@@ -199,30 +199,30 @@
 }
 
 .subKicker {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   letter-spacing: 0.2em;
   color: #B5AFA6;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .subTitle {
-  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 4.5vw, 2.5rem);
   line-height: 1.1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   color: #2E2B28;
   margin-bottom: 1rem;
 }
 
 .subCopy {
   max-width: 30rem;
-  font-size: 0.875rem;
-  line-height: 1.8;
+  font-size: 0.8125rem;
+  line-height: 1.75;
   color: #6F6961;
   margin-bottom: 2.5rem;
 }
 
 .subMeta {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   line-height: 1.7;
   color: #9A948C;
 }

@@ -4,12 +4,21 @@
   padding: 0;
 }
 
+html {
+  font-size: 14px;
+}
+
 html, body {
   background-color: #ffffff;
   color: #1A1817;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+body {
+  letter-spacing: -0.01em;
+  line-height: 1.5;
 }
 
 /* Smooth scroll for anchor links */
