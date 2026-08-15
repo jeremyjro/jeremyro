@@ -32,12 +32,12 @@ export default function PortfolioPage() {
           <div className={styles.proposal}>
             <h3 className={styles.proposalHead}>Problem</h3>
             <p className={styles.proposalText}>
-              Founder, executive, and employee-led LinkedIn content can be a powerful go-direct channel. But standing it up internally usually runs into the same problems: lack of time, lack of people, and lack of deep marketing know-how.
+              Founder, executive, and employee-led LinkedIn and X content can be a powerful go-direct channel. But most teams don't have the time, people, or deep marketing experience to build it in-house.
             </p>
 
             <h3 className={styles.proposalHead}>Solution</h3>
             <p className={styles.proposalText}>
-              LinkedIn is a high-leverage go-direct channel for B2B companies — it compounds brand and demand generation at the same time.
+              LinkedIn and X are high-leverage go-direct channels for B2B companies — they compound brand and demand generation at the same time. I embed as an in-house growth hire and run the engine end-to-end, working directly with founders, execs, and employees who want to post.
             </p>
 
             <h3 className={styles.proposalHead}>How</h3>
@@ -62,10 +62,10 @@ export default function PortfolioPage() {
               </li>
             </ul>
             <p className={styles.caveat}>
-              We only install the modules the company actually needs.
+              I don't ship a fixed package. I embed with the team, prioritize the modules that move the needle, and hand off playbooks and ownership as the engine matures.
             </p>
             <p className={styles.demoCallout}>
-              The engine runs on a Content Orchestration Platform I built.{" "}
+              I run this on a Content Orchestration Platform I built.{" "}
               <a
                 className={styles.link}
                 href={LOOM_URL}
@@ -125,7 +125,7 @@ export default function PortfolioPage() {
           <h2 className={styles.sectionTitle}>Portfolio</h2>
 
           <div className={styles.workBlock}>
-            <h3 className={styles.workTitle}>LinkedIn (best channel)</h3>
+            <h3 className={styles.workTitle}>LinkedIn &amp; X (best channels)</h3>
             <ul className={styles.caseProfiles}>
               <li>
                 <strong>Jeremy Ro</strong> —{" "}
@@ -145,7 +145,7 @@ export default function PortfolioPage() {
               </li>
             </ul>
             <p className={styles.caseProfileNote}>
-              All content is posted publicly on our LinkedIn profiles — click through to see the live posts.
+              All content is posted publicly on LinkedIn and X — click through to see the live posts.
             </p>
 
             <p className={styles.caseProfileSubhead}>Other accounts</p>
