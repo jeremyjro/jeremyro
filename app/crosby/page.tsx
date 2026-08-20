@@ -229,6 +229,28 @@ export default function CrosbyPage() {
           <p className={`${styles.caseProfileSubhead} ${styles.mediaSubhead}`}>Other media created</p>
 
           <div className={styles.workBlock}>
+            <h3 className={styles.workTitle}>X</h3>
+            <div className={styles.linkList}>
+              <a
+                className={styles.link}
+                href="https://x.com/itsericlay/status/1973779551731020165?s=20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Virio&apos;s launch video — 800k impressions ↗
+              </a>
+              <a
+                className={styles.link}
+                href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Personal video — 298k impressions ↗
+              </a>
+            </div>
+          </div>
+
+          <div className={styles.workBlock}>
             <h3 className={styles.workTitle}>Insta / YT</h3>
             <div className={styles.linkList}>
               <a
