@@ -157,12 +157,6 @@ export default function CrosbyPage() {
                 <strong>Founder/CTO (anonymized)</strong>, voice AI — $2.7B valuation, $250M raised
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/andrewettinger23/" target="_blank" rel="noopener noreferrer">Andrew Ettinger</a> (CEO), Hume AI — $1.1B valuation, $220M raised
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/conorbrennanburke/" target="_blank" rel="noopener noreferrer">Connor Brennan-Burke</a> (Founder/CEO), AI workflow automation — $8M raised from YC
-              </li>
-              <li>
                 <a href="https://www.linkedin.com/in/wayne-nelms/" target="_blank" rel="noopener noreferrer">Wayne Nelms</a>, Ornn ($33M Series A, a16z), Compute market
               </li>
             </ul>
