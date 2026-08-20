@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Crosby LinkedIn and X proposal — B2B demand generation, LinkedIn ghostwriting, and proof of work.",
 };
 
-const LOOM_URL = "#";
+const TREVOR_URL = "https://Trevor.jeremyro.com";
 
 export default function CrosbyPage() {
   return (
@@ -37,7 +37,7 @@ export default function CrosbyPage() {
 
             <h3 className={styles.proposalHead}>Solution</h3>
             <p className={styles.proposalText}>
-              LinkedIn and X are high-leverage go-direct channels for B2B companies — they compound brand and demand generation at the same time. I embed as an in-house growth hire and run the engine end-to-end, working directly with founders, execs, and employees who want to post.
+              LinkedIn and X are high-leverage go-direct channels for B2B companies — they compound brand and pipeline at the same time. I embed as an in-house growth hire and run the engine end-to-end, working directly with founders, execs, and employees who want to post.
             </p>
 
             <h3 className={styles.proposalHead}>How</h3>
@@ -68,12 +68,15 @@ export default function CrosbyPage() {
               I run this on a Content Orchestration Platform I built.{" "}
               <a
                 className={styles.link}
-                href={LOOM_URL}
+                href={TREVOR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Watch the Loom demo ↗
+                Trevor.jeremyro.com ↗
               </a>
+            </p>
+            <p className={styles.caveat}>
+              Log in with your company email to try the platform.
             </p>
           </div>
         </section>
@@ -115,7 +118,7 @@ export default function CrosbyPage() {
             <li>
               <span className={styles.timelineDate}>Oct 2025 – June 2026</span>
               <span className={styles.timelineDesc}>
-                <strong>Offering 2</strong> (text + image content on LinkedIn as a Service): $0–$3M annualized revenue.
+                <strong>Offering 2</strong> (text + image content on LinkedIn as a Service): $0–$4.5M annualized revenue.
               </span>
             </li>
           </ul>
@@ -164,7 +167,7 @@ export default function CrosbyPage() {
               </li>
             </ul>
             <p className={styles.caseProfileNote}>
-              Written for by Content Engineers Jeremy coached on his content frameworks.
+              Some accounts anonymized..
               Names anonymized at clients&apos; request — happy to share more details if needed.
             </p>
 
