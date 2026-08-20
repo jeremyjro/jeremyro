@@ -4,7 +4,7 @@ import styles from "../portfolio/portfolio.module.css";
 
 export const metadata: Metadata = {
   title: "Crosby · Jeremy Ro",
-  description: "Crosby LinkedIn and X proposal — B2B demand generation, LinkedIn ghostwriting, and proof of work.",
+  description: "Crosby LinkedIn strategy — B2B pipeline, LinkedIn ghostwriting, and proof of work.",
 };
 
 const TREVOR_URL = "https://Trevor.jeremyro.com";
@@ -24,20 +24,20 @@ export default function CrosbyPage() {
         <p className={shared.subKicker}>portfolio</p>
         <h1 className={shared.subTitle}>Portfolio</h1>
         <p className={shared.subCopy}>
-          A one-pager with samples of my writing and work. It covers the problem I solve, how I do it, and examples across LinkedIn, X, and other media.
+          A one-pager with samples of my writing and work. It covers the problem I solve, how I do it, and examples across LinkedIn and other media.
         </p>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Crosby LinkedIn &amp; X Proposal</h2>
+          <h2 className={styles.sectionTitle}>Crosby LinkedIn Strategy</h2>
           <div className={styles.proposal}>
             <h3 className={styles.proposalHead}>Problem</h3>
             <p className={styles.proposalText}>
-              Founder, executive, and employee-led LinkedIn and X content can be a powerful go-direct channel. But most teams don't have the time, people, or deep marketing experience to build it in-house.
+              Founder, executive, and employee-led LinkedIn content can be a powerful go-direct channel for B2B services firms. But most teams don't have the time, people, or deep marketing experience to build it in-house.
             </p>
 
             <h3 className={styles.proposalHead}>Solution</h3>
             <p className={styles.proposalText}>
-              LinkedIn and X are high-leverage go-direct channels for B2B companies — they compound brand and pipeline at the same time. I embed as an in-house growth hire and run the engine end-to-end, working directly with founders, execs, and employees who want to post.
+              LinkedIn is the high-leverage go-direct channel for B2B services firms — it compounds brand and pipeline in one place. For a law firm like Crosby, that means partners and operators showing up where founders, GCs, and commercial leaders already evaluate outside counsel. I embed as an in-house growth hire and run the engine end-to-end, working directly with founders, execs, and employees who want to post.
             </p>
 
             <h3 className={styles.proposalHead}>How</h3>
@@ -128,7 +128,7 @@ export default function CrosbyPage() {
           <h2 className={styles.sectionTitle}>Portfolio</h2>
 
           <div className={styles.workBlock}>
-            <h3 className={styles.workTitle}>LinkedIn &amp; X (best channels)</h3>
+            <h3 className={styles.workTitle}>LinkedIn (best channel)</h3>
             <ul className={styles.caseProfiles}>
               <li>
                 <strong>Jeremy Ro</strong> —{" "}
@@ -148,7 +148,7 @@ export default function CrosbyPage() {
               </li>
             </ul>
             <p className={styles.caseProfileNote}>
-              All content is posted publicly on LinkedIn and X — click through to see the live posts.
+              All content is posted publicly on LinkedIn — click through to see the live posts.
             </p>
 
             <p className={styles.caseProfileSubhead}>Other accounts</p>
@@ -233,28 +233,6 @@ export default function CrosbyPage() {
           </div>
 
           <p className={`${styles.caseProfileSubhead} ${styles.mediaSubhead}`}>Other media created</p>
-
-          <div className={styles.workBlock}>
-            <h3 className={styles.workTitle}>X</h3>
-            <div className={styles.linkList}>
-              <a
-                className={styles.link}
-                href="https://x.com/itsericlay/status/1973779551731020165?s=20"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Virio&apos;s launch video — 800k impressions ↗
-              </a>
-              <a
-                className={styles.link}
-                href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Personal video — 298k impressions ↗
-              </a>
-            </div>
-          </div>
 
           <div className={styles.workBlock}>
             <h3 className={styles.workTitle}>Insta / YT</h3>
