@@ -9,32 +9,6 @@ export interface StartupCaseStudy {
 
 export const STARTUP_CASE_STUDIES: StartupCaseStudy[] = [
   {
-    slug: "mintlify",
-    name: "Mintlify",
-    raised: "$45M Series B",
-    investors: "a16z + Salesforce Ventures",
-    description:
-      "Documentation infrastructure for the teams building the next generation of software.",
-    work: [
-      "Built founder-led LinkedIn content around the shift from documentation to AI-native knowledge infrastructure.",
-      "Connected organic distribution to a direct outbound motion for high-intent accounts.",
-      "Turned product insight into a repeatable brand and pipeline-generation system.",
-    ],
-  },
-  {
-    slug: "reactor",
-    name: "Reactor",
-    raised: "$59M",
-    investors: "Lightspeed Venture Partners",
-    description:
-      "A developer platform for real-time generative video and interactive AI worlds.",
-    work: [
-      "Clarified the founder-led narrative for a new category emerging from stealth.",
-      "Developed LinkedIn content that translated technical ambition into a market-level point of view.",
-      "Paired the organic motion with direct outreach to create early category awareness and pipeline.",
-    ],
-  },
-  {
     slug: "virio",
     name: "Virio",
     raised: "raised $1M",
