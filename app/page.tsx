@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import AsciiVideo from "./ascii-video";
+import AsciiRevealText from "./ascii-reveal-text";
 import SocialLinks from "./social-links";
 
 // Playlist: plays each clip in order, then loops back to the first.
@@ -19,7 +20,11 @@ export default function Home() {
       </div>
 
       <div className={styles.heroCenter}>
-        <p className={styles.heroSaying}>AVDE·SEMEL</p>
+        <AsciiRevealText
+          from="AVDE·SEMEL"
+          to="DARE ONCE"
+          className={styles.heroSaying}
+        />
       </div>
 
       <SocialLinks />
