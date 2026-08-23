@@ -11,7 +11,7 @@ interface AsciiRevealTextProps {
 }
 
 const GLITCH_CHARS =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:\",./<>?\\";
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:\",./<>?\\";
 
 const ZWSP = "\u200B";
 
@@ -31,7 +31,7 @@ export default function AsciiRevealText({
   from,
   to,
   className,
-  duration = 700,
+  duration = 300,
   characters = GLITCH_CHARS,
 }: AsciiRevealTextProps) {
   const [display, setDisplay] = useState(from);
@@ -39,6 +39,12 @@ export default function AsciiRevealText({
   const rafRef = useRef<number | null>(null);
   const startRef = useRef<number | null>(null);
   const thresholdsRef = useRef<number[] | null>(null);
+  const displayRef = useRef(from);
+
+  const setDisplayValue = (value: string) => {
+    displayRef.current = value;
+    setDisplay(value);
+  };
 
   useEffect(() => {
     const prefersReduced =
@@ -46,13 +52,20 @@ export default function AsciiRevealText({
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReduced) {
-      setDisplay(hovering ? to : from);
+      setDisplayValue(hovering ? to : from);
       return;
     }
 
     const maxLen = Math.max(from.length, to.length);
     const source = hovering ? pad(from, maxLen) : pad(to, maxLen);
     const target = hovering ? pad(to, maxLen) : pad(from, maxLen);
+    const targetDisplay = stripTrailingZwsp(target);
+
+    // Skip animating if we already match the target (e.g. initial mount).
+    if (displayRef.current === targetDisplay) {
+      setDisplayValue(targetDisplay);
+      return;
+    }
 
     thresholdsRef.current = null;
     startRef.current = null;
@@ -73,16 +86,14 @@ export default function AsciiRevealText({
         const threshold = thresholdsRef.current[i] ?? 0;
         if (progress >= threshold) {
           out += target[i] ?? "";
+        } else if (progress <= 0) {
+          out += source[i] ?? "";
         } else {
-          const sourceChar = source[i];
-          out +=
-            sourceChar !== undefined && sourceChar !== ZWSP
-              ? sourceChar
-              : characters[Math.floor(Math.random() * characters.length)];
+          out += characters[Math.floor(Math.random() * characters.length)];
         }
       }
 
-      setDisplay(stripTrailingZwsp(out));
+      setDisplayValue(stripTrailingZwsp(out));
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(animate);
@@ -103,7 +114,7 @@ export default function AsciiRevealText({
       className={className}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      style={{ cursor: "pointer", pointerEvents: "auto" }}
+      style={{ cursor: "pointer", pointerEvents: "auto", display: "inline-block" }}
     >
       {display}
     </span>
