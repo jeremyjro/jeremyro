@@ -22,7 +22,7 @@ The jeremyro repo is a Next.js app in `/home/ubuntu/repos/jeremyro`.
 
 - The hero text is rendered by `AsciiRevealText` inside `.heroCenter` (which has `pointer-events: none`), so the text span itself has `pointer-events: auto`.
 - The span is small and centered; the tool coordinate space (1024x768) is scaled to the actual display, so eyeballing the cursor position is unreliable.
-- Calibrate by running `document.querySelector('span').getBoundingClientRect()` in the console, then convert client coordinates to tool coordinates with the live display scale. As a quick reference on a 1600x1200 display, the text center is near tool coordinate `(512, 390)`.
+- Calibrate by running `document.querySelector('span').getBoundingClientRect()` in the console, then convert client coordinates to tool coordinates with the live display scale. As a quick reference on a 1600x1200 display, the text center is near tool coordinate `(512, 400)` (the span is small, so calibrate per session).
 
 ## Devin Secrets Needed
 
