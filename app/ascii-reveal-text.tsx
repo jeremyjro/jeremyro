@@ -98,8 +98,9 @@ export default function AsciiRevealText({
       const elapsed = timestamp - startRef.current;
       const progress = Math.min(Math.max(elapsed / duration, 0), 1);
       // Ease-in: the visible phrase accelerates outward from the center,
-      // rather than expanding at a constant linear speed.
-      const reveal = progress * progress;
+      // rather than expanding at a constant linear speed. Use cubic for
+      // a stronger acceleration.
+      const reveal = progress * progress * progress;
 
       if (thresholdsRef.current === null) {
         thresholdsRef.current = Array.from({ length: maxLen }, (_, i) => {
