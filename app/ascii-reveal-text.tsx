@@ -97,6 +97,9 @@ export default function AsciiRevealText({
       if (startRef.current === null) startRef.current = timestamp;
       const elapsed = timestamp - startRef.current;
       const progress = Math.min(Math.max(elapsed / duration, 0), 1);
+      // Ease-in: the visible phrase accelerates outward from the center,
+      // rather than expanding at a constant linear speed.
+      const reveal = progress * progress;
 
       if (thresholdsRef.current === null) {
         thresholdsRef.current = Array.from({ length: maxLen }, (_, i) => {
@@ -116,10 +119,10 @@ export default function AsciiRevealText({
       }
 
       const activeStart = Math.round(
-        sourceStart + progress * (targetStart - sourceStart)
+        sourceStart + reveal * (targetStart - sourceStart)
       );
       const activeEnd = Math.round(
-        sourceEnd + progress * (targetEnd - sourceEnd)
+        sourceEnd + reveal * (targetEnd - sourceEnd)
       );
 
       let out = "";
