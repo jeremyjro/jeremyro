@@ -18,6 +18,12 @@ The jeremyro repo is a Next.js app in `/home/ubuntu/repos/jeremyro`.
 - Verify the server-rendered HTML with `curl -s http://localhost:3000/<route>`.
 - Use the browser's find (`Ctrl+F`) to locate and highlight changed strings on the rendered page.
 
+## Testing the hero ASCII-reveal hover text
+
+- The hero text is rendered by `AsciiRevealText` inside `.heroCenter` (which has `pointer-events: none`), so the text span itself has `pointer-events: auto`.
+- The span is small and centered; the tool coordinate space (1024x768) is scaled to the actual display, so eyeballing the cursor position is unreliable.
+- Calibrate by running `document.querySelector('span').getBoundingClientRect()` in the console, then convert client coordinates to tool coordinates with the live display scale. As a quick reference on a 1600x1200 display, the text center is near tool coordinate `(512, 390)`.
+
 ## Devin Secrets Needed
 
 None for public routes.
