@@ -46,6 +46,10 @@
   color: #000000;
   margin: 0;
   text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.4em 0.8em;
+  border-radius: 0.25rem;
+  pointer-events: auto;
 }
 
 .scrollHint {
@@ -85,7 +89,7 @@
   .heroSaying {
     font-size: clamp(0.66rem, 4.2vw, 1.15rem);
     letter-spacing: 0.02em;
-    padding: 0 1rem;
+    padding: 0.4em 1rem;
   }
 
   .scrollHint {
