@@ -22,7 +22,7 @@ export default function Home() {
       <div className={styles.heroCenter}>
         <AsciiRevealText
           from="AVDE·SEMEL"
-          to="FORTUNE FAVORS THE BOLD"
+          to="FORTUNE FAVORS THE DARING"
           duration={500}
           className={styles.heroSaying}
         />
