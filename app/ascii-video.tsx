@@ -18,13 +18,13 @@ interface Props {
 export default function AsciiVideo({ src }: Props) {
   const playlist = Array.isArray(src) ? src : [src];
   const [index, setIndex] = useState(0);
-  const [numColumns, setNumColumns] = useState(160);
+  const [numColumns, setNumColumns] = useState(480);
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  // Fewer columns on narrow screens: larger ASCII pixels render better and
+  // Fewer columns on narrow screens to keep the denser ASCII readable and to
   // ease the WebGL load on mobile devices.
   useEffect(() => {
-    const updateColumns = () => setNumColumns(window.innerWidth <= 640 ? 80 : 160);
+    const updateColumns = () => setNumColumns(window.innerWidth <= 640 ? 240 : 480);
     updateColumns();
     window.addEventListener("resize", updateColumns);
     return () => window.removeEventListener("resize", updateColumns);
