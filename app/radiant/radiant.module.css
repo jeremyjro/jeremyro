@@ -8,6 +8,13 @@
   margin-top: 1.5rem;
 }
 
+.divider {
+  border: 0;
+  border-top: 1px solid #eeeae4;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
 .sectionTitle {
   font-size: 0.9375rem;
   font-weight: 500;
