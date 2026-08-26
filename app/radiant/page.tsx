@@ -51,7 +51,7 @@ export default function RadiantPage() {
               <div className={styles.funnelStageTop}>Top</div>
             </div>
             <p className={styles.funnelDesc}>
-              Wrote LinkedIn posts for my account (1.8M impressions) and Eric&apos;s, CEO of Virio (2.3M impressions), driving follower growth on both.
+              Wrote LinkedIn posts for my account (1.8M impressions) and Eric&apos;s, CEO of Virio (4.5M impressions), driving follower growth on both.
             </p>
 
             <div className={styles.funnelStageCol}>
@@ -119,7 +119,13 @@ export default function RadiantPage() {
                 <strong>Founder/CTO (anonymized)</strong>, voice AI — $2.7B valuation, $250M raised
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/wayne-nelms/" target="_blank" rel="noopener noreferrer">Wayne Nelms</a>, Ornn ($33M Series A, a16z), Compute market
+                <strong>Wayne Nelms</strong> —{" "}
+                <a href="https://www.linkedin.com/in/wayne-nelms/" target="_blank" rel="noopener noreferrer">LinkedIn</a>{" "} / {" "}
+                <a href="https://x.com/OrnnExchange" target="_blank" rel="noopener noreferrer">X</a>
+                <br />
+                Also managing Ornn&apos;s company {" "}
+                <a href="https://www.linkedin.com/company/ornn/home/" target="_blank" rel="noopener noreferrer">LinkedIn</a> and {" "}
+                <a href="https://x.com/OrnnExchange" target="_blank" rel="noopener noreferrer">X</a>. Ornn ($33M Series A, a16z), Compute market.
               </li>
             </ul>
             <div className={styles.caseStudy}>
