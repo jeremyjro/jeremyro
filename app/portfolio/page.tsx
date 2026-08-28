@@ -4,78 +4,36 @@ import styles from "./portfolio.module.css";
 
 export const metadata: Metadata = {
   title: "Portfolio · Jeremy Ro",
-  description: "Selected writing and work samples — B2B demand generation, LinkedIn ghostwriting, and proof of work.",
+  description: "Selected writing and work samples — LinkedIn ghostwriting, B2B demand generation, and proof of work.",
 };
 
-const LOOM_URL = "#";
+const PLATFORM_URL = "https://trevor.jeremyro.com";
 
 export default function PortfolioPage() {
   return (
     <main className={shared.subPage}>
       <div className={shared.subInner}>
-        <img
-          src="/decagon-logo.png"
-          alt="Decagon"
-          className={styles.logo}
-          width={40}
-          height={40}
-        />
         <a href="/" className={shared.backLink}>← home</a>
         <p className={shared.subKicker}>portfolio</p>
         <h1 className={shared.subTitle}>Portfolio</h1>
         <p className={shared.subCopy}>
-          A one-pager with samples of my writing and work. It covers the problem I solve, how I do it, and examples across LinkedIn, X, and other media.
+          A one-pager with samples of my writing and work.
         </p>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Decagon LinkedIn &amp; X Proposal</h2>
-          <div className={styles.proposal}>
-            <h3 className={styles.proposalHead}>Problem</h3>
-            <p className={styles.proposalText}>
-              Founder, executive, and employee-led LinkedIn and X content can be a powerful go-direct channel. But most teams don't have the time, people, or deep marketing experience to build it in-house.
-            </p>
-
-            <h3 className={styles.proposalHead}>Solution</h3>
-            <p className={styles.proposalText}>
-              LinkedIn and X are high-leverage go-direct channels for B2B companies — they compound brand and demand generation at the same time. I embed as an in-house growth hire and run the engine end-to-end, working directly with founders, execs, and employees who want to post.
-            </p>
-
-            <h3 className={styles.proposalHead}>How</h3>
-            <p className={styles.proposalText}>
-              A modular engine made of five parts:
-            </p>
-            <ul className={styles.engine}>
-              <li>
-                <strong>Planning</strong> — Define the ICP, hypothesize a concrete outcome, and set an actionable roadmap.
-              </li>
-              <li>
-                <strong>Content</strong> — Strategize angles, interview executives, produce posts, and manage engagement.
-              </li>
-              <li>
-                <strong>Outbound</strong> — Capture leads, qualify intent, and run targeted campaigns.
-              </li>
-              <li>
-                <strong>Analysis</strong> — Revisit the hypothesis, check whether inputs matched output, ask &ldquo;why?&rdquo; if not, and re-run with adjusted variables.
-              </li>
-              <li>
-                <strong>Enablement / RevOps</strong> — Track data across iterations in the company&apos;s system of record, document the playbook, train the internal owner, and hand off so the engine keeps running.
-              </li>
-            </ul>
-            <p className={styles.caveat}>
-              I don't ship a fixed package. I embed with the team, prioritize the modules that move the needle, and hand off playbooks and ownership as the engine matures.
-            </p>
-            <p className={styles.demoCallout}>
-              I run this on a Content Orchestration Platform I built.{" "}
-              <a
-                className={styles.link}
-                href={LOOM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Watch the Loom demo ↗
-              </a>
-            </p>
-          </div>
+          <h2 className={styles.sectionTitle}>LinkedIn &amp; X Proposal</h2>
+          <hr className={styles.divider} />
+          <p className={styles.demoCallout}>
+            I run this on a Content Orchestration Platform I built.{" "}
+            <a
+              className={styles.link}
+              href={PLATFORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              trevor.jeremyro.com ↗
+            </a>
+          </p>
         </section>
 
         <section className={styles.section}>
@@ -86,7 +44,7 @@ export default function PortfolioPage() {
               <div className={styles.funnelStageTop}>Top</div>
             </div>
             <p className={styles.funnelDesc}>
-              Wrote LinkedIn posts for my account (1.8M impressions) and Eric&apos;s, CEO of Virio (2.3M impressions), driving follower growth on both.
+              Wrote LinkedIn posts for my account (1.8M impressions) and Eric&apos;s, CEO of Virio (4.5M impressions), driving follower growth on both.
             </p>
 
             <div className={styles.funnelStageCol}>
@@ -154,22 +112,17 @@ export default function PortfolioPage() {
                 <strong>Founder/CTO (anonymized)</strong>, voice AI — $2.7B valuation, $250M raised
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/andrewettinger23/" target="_blank" rel="noopener noreferrer">Andrew Ettinger</a> (CEO), Hume AI — $1.1B valuation, $220M raised
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/conorbrennanburke/" target="_blank" rel="noopener noreferrer">Connor Brennan-Burke</a> (Founder/CEO), AI workflow automation — $8M raised from YC
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/wayne-nelms/" target="_blank" rel="noopener noreferrer">Wayne Nelms</a>, Ornn ($33M Series A, a16z), Compute market
+                <strong>Wayne Nelms</strong> —{" "}
+                <a href="https://www.linkedin.com/in/wayne-nelms/" target="_blank" rel="noopener noreferrer">LinkedIn</a>{" "} / {" "}
+                <a href="https://x.com/OrnnExchange" target="_blank" rel="noopener noreferrer">X</a>
+                <br />
+                Also managing Ornn&apos;s company {" "}
+                <a href="https://www.linkedin.com/company/ornn/home/" target="_blank" rel="noopener noreferrer">LinkedIn</a> and {" "}
+                <a href="https://x.com/OrnnExchange" target="_blank" rel="noopener noreferrer">X</a>. Ornn ($33M Series A, a16z), Compute market.
               </li>
             </ul>
-            <p className={styles.caseProfileNote}>
-              Written for by Content Engineers Jeremy coached on his content frameworks.
-              Names anonymized at clients&apos; request — happy to share more details if needed.
-            </p>
-
             <div className={styles.caseStudy}>
-              <h4 className={styles.caseTitle}>Case study: Services, the new software</h4>
+              <h4 className={styles.caseTitle}>Case study post: Services, the new software</h4>
               <p className={styles.caseLink}>
                 <a
                   href="https://www.linkedin.com/posts/jeremyro_for-every-1-spent-on-software-6-is-spent-activity-7453898231887065088-2rMM?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAEMriSgBYaTpHjEZtxTCo6Awvm-g3zm7kRc"
@@ -183,7 +136,7 @@ export default function PortfolioPage() {
               <div className={styles.caseStep}>
                 <h5 className={styles.caseStepTitle}>1. The post</h5>
                 <p className={styles.caseStepDesc}>
-                  A single post reframing the $1T “services as a software” opportunity.
+                  A single post reframing the $1T &ldquo;services as a software&rdquo; opportunity.
                 </p>
                 <div className={styles.caseImages}>
                   <img src="/portfolio/case-studies/post-1.png" alt="LinkedIn post top half" className={styles.caseImage} />
@@ -203,29 +156,6 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              <div className={styles.caseStep}>
-                <h5 className={styles.caseStepTitle}>3. Inbound signal</h5>
-                <p className={styles.caseStepDesc}>
-                  Connection requests and DMs from ICPs who saw the content.
-                </p>
-                <div className={styles.caseImages}>
-                  <img src="/portfolio/case-studies/inbound-kamron.png" alt="Kamron Khodjaev connection request" className={styles.caseImage} />
-                  <img src="/portfolio/case-studies/inbound-crescendo.png" alt="VP of Marketing at Crescendo inbound message" className={styles.caseImage} />
-                </div>
-              </div>
-
-              <div className={styles.caseStep}>
-                <h5 className={styles.caseStepTitle}>4. Outbound</h5>
-                <p className={styles.caseStepDesc}>
-                  Direct outreach to prospects who engaged with the content, from both Jeremy and Eric.
-                </p>
-                <div className={styles.caseImages}>
-                  <img src="/portfolio/case-studies/outbound-holden.png" alt="Outbound message to Holden Lewis" className={styles.caseImage} />
-                  <img src="/portfolio/case-studies/outbound-eric-1.png" alt="Eric Lay outbound message to Nick Christensen" className={styles.caseImage} />
-                  <img src="/portfolio/case-studies/outbound-eric-2.png" alt="Nick Christensen reply" className={styles.caseImage} />
-                </div>
-              </div>
-
             </div>
           </div>
 
@@ -241,14 +171,6 @@ export default function PortfolioPage() {
                 rel="noopener noreferrer"
               >
                 Virio&apos;s launch video — 800k impressions ↗
-              </a>
-              <a
-                className={styles.link}
-                href="https://x.com/jjeremyro/status/1969473861935907314?s=20"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Personal video — 298k impressions ↗
               </a>
             </div>
           </div>

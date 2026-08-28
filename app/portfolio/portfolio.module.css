@@ -8,6 +8,13 @@
   margin-top: 1.5rem;
 }
 
+.divider {
+  border: 0;
+  border-top: 1px solid #eeeae4;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
 .sectionTitle {
   font-size: 0.9375rem;
   font-weight: 500;
@@ -65,10 +72,6 @@
 
 .caseStudy {
   margin-top: 2rem;
-}
-
-.mediaSubhead {
-  margin-top: 2.5rem;
 }
 
 .caseTitle {
@@ -149,8 +152,8 @@
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
-  width: 40px;
-  height: 40px;
+  height: 32px;
+  width: auto;
   object-fit: contain;
   z-index: 201;
 }
@@ -380,8 +383,8 @@
   }
 
   .logo {
-    width: 32px;
-    height: 32px;
+    height: 24px;
+    width: auto;
     top: 1rem;
     right: 1rem;
   }
