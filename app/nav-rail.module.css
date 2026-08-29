@@ -94,13 +94,6 @@
   opacity: 0;
 }
 
-.face {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  display: block;
-}
-
 .list {
   list-style: none;
   margin: 0;

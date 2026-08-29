@@ -39,13 +39,6 @@ export default function NavRail() {
       <NavHint />
       <div className={styles.hint} />
       <nav className={styles.panel}>
-        <img
-          src="/pluto.png"
-          alt="Jeremy Ro"
-          className={styles.face}
-          width={60}
-          height={60}
-        />
         <ul className={styles.list}>
           {LINKS.map((l) => (
             <li key={l.label}>
