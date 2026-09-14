@@ -13,24 +13,21 @@ NEW_MAIN_GLSL = """void main() {
   // Work in pixel space so the effects stay circular regardless of aspect
   vec2 px = v_texCoord * u_resolution;
   vec2 uv = v_texCoord;
-  float gapMask = 0.0;
 
   // Cursor gravity: cells near the cursor are pushed radially outward,
-  // leaving a small empty gap at the cursor centre
+  // with a suction pit at the cursor centre
   if (u_mouse.x >= 0.0) {
     vec2 mousePx = u_mouse * u_resolution;
     vec2 d = px - mousePx;
     float r = length(d);
-    float pushRadius = 40.0;
-    float pushStrength = 15.33;
-    float gapRadius = 5.33;
+    float pushRadius = 60.0;
+    float pushStrength = 24.0;
     if (r < pushRadius) {
       float t = 1.0 - r / pushRadius;
       float rSrc = max(0.0, r - pushStrength * t * t);
       vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;
       uv = srcPx / u_resolution;
     }
-    gapMask = 1.0 - smoothstep(gapRadius * 0.6, gapRadius, r);
   }
 
   // Click ripple: a displacement wave that travels across the whole screen
@@ -62,7 +59,7 @@ OLD_CELLPOS = "vec2 cellPos = fract(v_texCoord * u_gridSize);"
 NEW_CELLPOS = "vec2 cellPos = fract(uv * u_gridSize);"
 
 OLD_OUT = "fragColor = vec4(blendedColor, 1.0);"
-NEW_OUT = "blendedColor = mix(blendedColor, vec3(1.0), gapMask);\\n  fragColor = vec4(blendedColor, 1.0);"
+NEW_OUT = OLD_OUT
 
 NEW_MAIN = NEW_MAIN_GLSL.replace("\n", "\\n")
 
