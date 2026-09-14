@@ -21,16 +21,16 @@ NEW_MAIN_GLSL = """void main() {
     vec2 mousePx = u_mouse * u_resolution;
     vec2 d = px - mousePx;
     float r = length(d);
-    float pushRadius = 120.0;
-    float pushStrength = 46.0;
-    float gapRadius = 16.0;
+    float pushRadius = 40.0;
+    float pushStrength = 15.33;
+    float gapRadius = 5.33;
     if (r < pushRadius) {
       float t = 1.0 - r / pushRadius;
       float rSrc = max(0.0, r - pushStrength * t * t);
       vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;
       uv = srcPx / u_resolution;
     }
-    gapMask = 1.0 - smoothstep(gapRadius - 3.0, gapRadius, r);
+    gapMask = 1.0 - smoothstep(gapRadius * 0.6, gapRadius, r);
   }
 
   // Click ripple: a displacement wave that travels across the whole screen
