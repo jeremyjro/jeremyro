@@ -14,6 +14,7 @@ NEW_MAIN_GLSL = """void main() {
   // Work in pixel space so the effects stay circular regardless of aspect
   vec2 px = v_texCoord * u_resolution;
   vec2 uv = v_texCoord;
+  float cellW = u_resolution.x / u_gridSize.x;
 
   // Cursor gravity: cells near the cursor are pushed radially outward,
   // with a suction pit at the cursor centre
@@ -27,13 +28,15 @@ NEW_MAIN_GLSL = """void main() {
       float t = 1.0 - r / pushRadius;
       float rSrc = max(0.0, r - pushStrength * t * t);
       vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;
-      uv = srcPx / u_resolution;
+      // Where the push collapses onto the cursor, keep the cell's
+      // own sample so the pit shows the background, not a solid disc
+      float keep = smoothstep(0.0, cellW, rSrc);
+      uv = mix(v_texCoord, srcPx / u_resolution, keep);
     }
   }
 
   // Click ripple: a displacement wave that travels across the whole screen
   if (u_rippleEnabled > 0.5) {
-    float cellW = u_resolution.x / u_gridSize.x;
     vec2 rippleOffset = vec2(0.0);
     for (int i = 0; i < 8; i++) {
       vec4 ripple = u_ripples[i];
