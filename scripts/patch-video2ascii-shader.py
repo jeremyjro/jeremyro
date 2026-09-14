@@ -22,11 +22,13 @@ NEW_MAIN_GLSL = """void main() {
     vec2 mousePx = u_mouse * u_resolution;
     vec2 d = px - mousePx;
     float r = length(d);
-    float pushRadius = 60.0;
-    float pushStrength = 36.0;
+    float pushRadius = 90.0;
+    float pushStrength = 0.85;
     if (r < pushRadius) {
       float t = 1.0 - r / pushRadius;
-      float rSrc = max(0.0, r - pushStrength * t * t);
+      // Pull proportional to r, so the collapsed core stays about one cell
+      // wide while the distortion field itself is wide
+      float rSrc = r * (1.0 - pushStrength * t * t);
       vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;
       // Where the push collapses onto the cursor, keep the cell's
       // own sample so the pit shows the background, not a solid disc
