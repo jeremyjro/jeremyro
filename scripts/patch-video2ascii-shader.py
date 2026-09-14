@@ -1,5 +1,6 @@
 """Applies the cursor push / click ripple displacement to the video2ascii
-fragment shader in node_modules. Run, then `npx patch-package video2ascii`.
+fragment shader in node_modules. Run on a clean node_modules, then
+`npx patch-package video2ascii`.
 """
 import pathlib
 
@@ -21,7 +22,7 @@ NEW_MAIN_GLSL = """void main() {
     vec2 d = px - mousePx;
     float r = length(d);
     float pushRadius = 60.0;
-    float pushStrength = 24.0;
+    float pushStrength = 36.0;
     if (r < pushRadius) {
       float t = 1.0 - r / pushRadius;
       float rSrc = max(0.0, r - pushStrength * t * t);
@@ -55,6 +56,37 @@ NEW_MAIN_GLSL = """void main() {
   // Figure out which ASCII cell this pixel is in
   vec2 cellCoord = floor(uv * u_gridSize);"""
 
+# The stock cursor glow + trail brighten cells around the cursor; removed so
+# nothing highlights the pointer. (u_mouse/u_trail uniforms stay wired; unused.)
+OLD_GLOW_GLSL = """  // Cursor glow - blocky circle effect
+  float cursorGlow = 0.0;
+  float cursorRadius = 5.0;
+  
+  vec2 mouseCell = floor(u_mouse * u_gridSize);
+  float cellDist = length(thisCell - mouseCell);
+  if (cellDist <= cursorRadius && u_mouse.x >= 0.0) {
+    cursorGlow += 1.0 - cellDist / cursorRadius;
+  }
+  
+  // Trail effect
+  for (int i = 0; i < 12; i++) {
+    if (i >= u_trailLength) break;
+    vec2 trailPos = u_trail[i];
+    if (trailPos.x < 0.0) continue;
+    
+    vec2 trailCell = floor(trailPos * u_gridSize);
+    float trailDist = length(thisCell - trailCell);
+    float trailRadius = cursorRadius * 0.8;
+    
+    if (trailDist <= trailRadius) {
+      float fade = 1.0 - float(i) / float(u_trailLength);
+      cursorGlow += (1.0 - trailDist / trailRadius) * 0.5 * fade;
+    }
+  }
+  cursorGlow = min(cursorGlow, 1.0);
+  
+"""
+
 OLD_CELLPOS = "vec2 cellPos = fract(v_texCoord * u_gridSize);"
 NEW_CELLPOS = "vec2 cellPos = fract(uv * u_gridSize);"
 
@@ -62,11 +94,21 @@ OLD_OUT = "fragColor = vec4(blendedColor, 1.0);"
 NEW_OUT = OLD_OUT
 
 NEW_MAIN = NEW_MAIN_GLSL.replace("\n", "\\n")
+OLD_GLOW = OLD_GLOW_GLSL.replace("\n", "\\n")
+NEW_GLOW = ""
+OLD_GLOW_ADD = "  // Add cursor and ripple glow\\n  finalColor += cursorGlow * baseColor * 0.5;\\n"
+NEW_GLOW_ADD = "  // Add ripple glow\\n"
 
 for name in ("index.mjs", "index.js"):
     p = ROOT / name
     s = p.read_text()
-    for old, new in ((OLD_MAIN, NEW_MAIN), (OLD_CELLPOS, NEW_CELLPOS), (OLD_OUT, NEW_OUT)):
+    for old, new in (
+        (OLD_MAIN, NEW_MAIN),
+        (OLD_GLOW, NEW_GLOW),
+        (OLD_GLOW_ADD, NEW_GLOW_ADD),
+        (OLD_CELLPOS, NEW_CELLPOS),
+        (OLD_OUT, NEW_OUT),
+    ):
         assert s.count(old) == 1, (name, old[:40], s.count(old))
         s = s.replace(old, new)
     p.write_text(s)
