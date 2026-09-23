@@ -1,5 +1,5 @@
 diff --git a/node_modules/video2ascii/dist/index.js b/node_modules/video2ascii/dist/index.js
-index 223ccc7..36f6219 100644
+index 223ccc7..ea36108 100644
 --- a/node_modules/video2ascii/dist/index.js
 +++ b/node_modules/video2ascii/dist/index.js
 @@ -101,7 +101,7 @@ function getCharArray(charset) {
@@ -7,12 +7,99 @@ index 223ccc7..36f6219 100644
  
  // src/lib/webgl/shaders/fragment.glsl
 -var fragment_default = "#version 300 es\nprecision highp float;\n\n// Textures\nuniform sampler2D u_video;\nuniform sampler2D u_asciiAtlas;\n\n// Dimensions\nuniform vec2 u_resolution;\nuniform vec2 u_charSize;\nuniform vec2 u_gridSize;\nuniform float u_numChars;\n\n// Rendering options\nuniform bool u_colored;\nuniform float u_blend;\nuniform float u_highlight;\nuniform float u_brightness;\n\n// Audio\nuniform float u_audioLevel;\nuniform float u_audioReactivity;\nuniform float u_audioSensitivity;\n\n// Mouse\nuniform vec2 u_mouse;\nuniform float u_mouseRadius;\nuniform vec2 u_trail[24];\nuniform int u_trailLength;\n\n// Ripple\nuniform vec4 u_ripples[8];\nuniform float u_time;\nuniform float u_rippleEnabled;\nuniform float u_rippleSpeed;\n\nin vec2 v_texCoord;\nout vec4 fragColor;\n\nvoid main() {\n  // Figure out which ASCII cell this pixel is in\n  vec2 cellCoord = floor(v_texCoord * u_gridSize);\n  vec2 thisCell = cellCoord;\n  \n  // Sample video at cell center (mipmaps handle averaging)\n  vec2 cellCenter = (cellCoord + 0.5) / u_gridSize;\n  vec4 videoColor = texture(u_video, cellCenter);\n  \n  // Perceived brightness using human eye sensitivity weights\n  float baseBrightness = dot(videoColor.rgb, vec3(0.299, 0.587, 0.114));\n  \n  // Audio reactivity - louder = brighter, silence = darker\n  float minBrightness = mix(0.3, 0.0, u_audioSensitivity);\n  float maxBrightness = mix(1.0, 5.0, u_audioSensitivity);\n  float audioMultiplier = mix(minBrightness, maxBrightness, u_audioLevel);\n  float audioModulated = baseBrightness * audioMultiplier;\n  float brightness = mix(baseBrightness, audioModulated, u_audioReactivity);\n  \n  // Cursor glow - blocky circle effect\n  float cursorGlow = 0.0;\n  float cursorRadius = 5.0;\n  \n  vec2 mouseCell = floor(u_mouse * u_gridSize);\n  float cellDist = length(thisCell - mouseCell);\n  if (cellDist <= cursorRadius && u_mouse.x >= 0.0) {\n    cursorGlow += 1.0 - cellDist / cursorRadius;\n  }\n  \n  // Trail effect\n  for (int i = 0; i < 12; i++) {\n    if (i >= u_trailLength) break;\n    vec2 trailPos = u_trail[i];\n    if (trailPos.x < 0.0) continue;\n    \n    vec2 trailCell = floor(trailPos * u_gridSize);\n    float trailDist = length(thisCell - trailCell);\n    float trailRadius = cursorRadius * 0.8;\n    \n    if (trailDist <= trailRadius) {\n      float fade = 1.0 - float(i) / float(u_trailLength);\n      cursorGlow += (1.0 - trailDist / trailRadius) * 0.5 * fade;\n    }\n  }\n  cursorGlow = min(cursorGlow, 1.0);\n  \n  // Ripple effect - expanding rings on click\n  float rippleGlow = 0.0;\n  if (u_rippleEnabled > 0.5) {\n    for (int i = 0; i < 8; i++) {\n      vec4 ripple = u_ripples[i];\n      if (ripple.w < 0.5) continue;\n      \n      float age = u_time - ripple.z;\n      if (age < 0.0) continue;\n      \n      vec2 rippleCell = floor(ripple.xy * u_gridSize);\n      float cellDist = length(thisCell - rippleCell);\n      float initialRadius = 5.0;\n      \n      float distFromEdge = max(0.0, cellDist - initialRadius);\n      float rippleSpeed = u_rippleSpeed;\n      float reachTime = distFromEdge / rippleSpeed;\n      float timeSinceReached = age - reachTime;\n      \n      float fadeDuration = 0.5;\n      if (timeSinceReached >= 0.0 && timeSinceReached < fadeDuration) {\n        float pop = 1.0 - timeSinceReached / fadeDuration;\n        pop = pop * pop;\n        rippleGlow += pop * 0.3;\n      }\n    }\n    rippleGlow = min(rippleGlow, 1.0);\n  }\n  \n  // Apply brightness multiplier\n  // brightness < 1.0: darkens (multiply)\n  // brightness > 1.0: brightens (compress dark values toward 1.0)\n  float adjustedBrightness;\n  if (u_brightness <= 1.0) {\n    adjustedBrightness = brightness * u_brightness;\n  } else {\n    // For brightness > 1.0, compress the range: dark values get pushed up\n    // Formula: 1.0 - (1.0 - brightness) / u_brightness\n    // This makes dark values brighter while keeping bright values near 1.0\n    adjustedBrightness = 1.0 - (1.0 - brightness) / u_brightness;\n  }\n  adjustedBrightness = clamp(adjustedBrightness, 0.0, 1.0);\n  \n  // Map brightness to character index (0 = darkest char, numChars-1 = brightest)\n  float charIndex = floor(adjustedBrightness * (u_numChars - 0.001));\n  \n  // Find the character in the atlas (horizontal strip of pre-rendered chars)\n  float atlasX = charIndex / u_numChars;\n  vec2 cellPos = fract(v_texCoord * u_gridSize);\n  vec2 atlasCoord = vec2(atlasX + cellPos.x / u_numChars, cellPos.y);\n  vec4 charColor = texture(u_asciiAtlas, atlasCoord);\n  \n  // Pick the color - video colors or green terminal aesthetic\n  vec3 baseColor;\n  if (u_colored) {\n    baseColor = videoColor.rgb;\n  } else {\n    baseColor = vec3(0.0, 1.0, 0.0);\n  }\n  \n  // Background highlight behind each character\n  float bgIntensity = 0.15 + u_highlight * 0.35;\n  vec3 bgColor = baseColor * bgIntensity;\n  vec3 textColor = baseColor * 1.2;\n  vec3 finalColor = mix(bgColor, textColor, charColor.r);\n  \n  // Add cursor and ripple glow\n  finalColor += cursorGlow * baseColor * 0.5;\n  finalColor += rippleGlow * baseColor;\n  \n  // Blend with original video if requested\n  vec3 blendedColor = mix(finalColor, videoColor.rgb, u_blend);\n  \n  fragColor = vec4(blendedColor, 1.0);\n}\n";
-+var fragment_default = "#version 300 es\nprecision highp float;\n\n// Textures\nuniform sampler2D u_video;\nuniform sampler2D u_asciiAtlas;\n\n// Dimensions\nuniform vec2 u_resolution;\nuniform vec2 u_charSize;\nuniform vec2 u_gridSize;\nuniform float u_numChars;\n\n// Rendering options\nuniform bool u_colored;\nuniform float u_blend;\nuniform float u_highlight;\nuniform float u_brightness;\n\n// Audio\nuniform float u_audioLevel;\nuniform float u_audioReactivity;\nuniform float u_audioSensitivity;\n\n// Mouse\nuniform vec2 u_mouse;\nuniform float u_mouseRadius;\nuniform vec2 u_trail[24];\nuniform int u_trailLength;\n\n// Ripple\nuniform vec4 u_ripples[8];\nuniform float u_time;\nuniform float u_rippleEnabled;\nuniform float u_rippleSpeed;\n\nin vec2 v_texCoord;\nout vec4 fragColor;\n\nvoid main() {\n  // Work in pixel space so the effects stay circular regardless of aspect\n  vec2 px = v_texCoord * u_resolution;\n  vec2 uv = v_texCoord;\n  float cellW = u_resolution.x / u_gridSize.x;\n\n  // Cursor gravity: cells near the cursor are pushed radially outward,\n  // with a suction pit at the cursor centre\n  if (u_mouse.x >= 0.0) {\n    vec2 mousePx = u_mouse * u_resolution;\n    vec2 d = px - mousePx;\n    float r = length(d);\n    float pushRadius = 90.0;\n    float pushStrength = 0.85;\n    if (r < pushRadius) {\n      float t = 1.0 - r / pushRadius;\n      // Pull proportional to r, so the collapsed core stays about one cell\n      // wide while the distortion field itself is wide\n      float rSrc = r * (1.0 - pushStrength * t * t);\n      vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;\n      // Where the push collapses onto the cursor, keep the cell's\n      // own sample so the pit shows the background, not a solid disc\n      float keep = smoothstep(0.0, cellW, rSrc);\n      uv = mix(v_texCoord, srcPx / u_resolution, keep);\n    }\n  }\n\n  // Click ripple: a displacement wave that travels across the whole screen\n  if (u_rippleEnabled > 0.5) {\n    vec2 rippleOffset = vec2(0.0);\n    for (int i = 0; i < 8; i++) {\n      vec4 ripple = u_ripples[i];\n      if (ripple.w < 0.5) continue;\n      float age = u_time - ripple.z;\n      if (age < 0.0) continue;\n      vec2 d = px - ripple.xy * u_resolution;\n      float r = length(d);\n      float front = (5.0 + age * u_rippleSpeed) * cellW;\n      float width = 48.0;\n      float x = (r - front) / width;\n      float wave = exp(-x * x) * sin(x * 3.14159);\n      float decay = 1.0 / (1.0 + age * 0.5);\n      if (r > 0.0001) rippleOffset += (d / r) * wave * 14.0 * decay;\n    }\n    uv -= rippleOffset / u_resolution;\n  }\n  uv = clamp(uv, vec2(0.0), vec2(0.9999));\n\n  // Figure out which ASCII cell this pixel is in\n  vec2 cellCoord = floor(uv * u_gridSize);\n  \n  // Sample video at cell center (mipmaps handle averaging)\n  vec2 cellCenter = (cellCoord + 0.5) / u_gridSize;\n  vec4 videoColor = texture(u_video, cellCenter);\n  \n  // Perceived brightness using human eye sensitivity weights\n  float baseBrightness = dot(videoColor.rgb, vec3(0.299, 0.587, 0.114));\n  \n  // Audio reactivity - louder = brighter, silence = darker\n  float minBrightness = mix(0.3, 0.0, u_audioSensitivity);\n  float maxBrightness = mix(1.0, 5.0, u_audioSensitivity);\n  float audioMultiplier = mix(minBrightness, maxBrightness, u_audioLevel);\n  float audioModulated = baseBrightness * audioMultiplier;\n  float brightness = mix(baseBrightness, audioModulated, u_audioReactivity);\n  \n  // Apply brightness multiplier\n  // brightness < 1.0: darkens (multiply)\n  // brightness > 1.0: brightens (compress dark values toward 1.0)\n  float adjustedBrightness;\n  if (u_brightness <= 1.0) {\n    adjustedBrightness = brightness * u_brightness;\n  } else {\n    // For brightness > 1.0, compress the range: dark values get pushed up\n    // Formula: 1.0 - (1.0 - brightness) / u_brightness\n    // This makes dark values brighter while keeping bright values near 1.0\n    adjustedBrightness = 1.0 - (1.0 - brightness) / u_brightness;\n  }\n  adjustedBrightness = clamp(adjustedBrightness, 0.0, 1.0);\n  \n  // Map brightness to character index (0 = darkest char, numChars-1 = brightest)\n  float charIndex = floor(adjustedBrightness * (u_numChars - 0.001));\n  \n  // Find the character in the atlas (horizontal strip of pre-rendered chars)\n  float atlasX = charIndex / u_numChars;\n  vec2 cellPos = fract(uv * u_gridSize);\n  vec2 atlasCoord = vec2(atlasX + cellPos.x / u_numChars, cellPos.y);\n  vec4 charColor = texture(u_asciiAtlas, atlasCoord);\n  \n  // Pick the color - video colors or green terminal aesthetic\n  vec3 baseColor;\n  if (u_colored) {\n    baseColor = videoColor.rgb;\n  } else {\n    baseColor = vec3(0.0, 1.0, 0.0);\n  }\n  \n  // Artificial brightness lift then white paper background with colored ink\n  baseColor = clamp(baseColor * 1.15 + 0.04, 0.0, 1.0);\n  vec3 bgColor = vec3(1.0);\n  vec3 textColor = baseColor;\n  vec3 finalColor = mix(bgColor, textColor, charColor.r);\n  \n  // Blend with original video if requested\n  vec3 blendedColor = mix(finalColor, videoColor.rgb, u_blend);\n  \n  fragColor = vec4(blendedColor, 1.0);\n}\n";
++var fragment_default = "#version 300 es\nprecision highp float;\n\n// Textures\nuniform sampler2D u_video;\nuniform sampler2D u_asciiAtlas;\n\n// Dimensions\nuniform vec2 u_resolution;\nuniform vec2 u_charSize;\nuniform vec2 u_gridSize;\nuniform float u_numChars;\n\n// Rendering options\nuniform bool u_colored;\nuniform float u_blend;\nuniform float u_highlight;\nuniform float u_brightness;\n\n// Audio\nuniform float u_audioLevel;\nuniform float u_audioReactivity;\nuniform float u_audioSensitivity;\n\n// Mouse\nuniform vec2 u_mouse;\nuniform float u_mouseRadius;\nuniform vec2 u_trail[24];\nuniform int u_trailLength;\n\n// Ripple\nuniform vec4 u_ripples[16];\nuniform float u_time;\nuniform float u_rippleEnabled;\nuniform float u_rippleSpeed;\n\nin vec2 v_texCoord;\nout vec4 fragColor;\n\nvoid main() {\n  // Work in pixel space so the effects stay circular regardless of aspect\n  vec2 px = v_texCoord * u_resolution;\n  vec2 uv = v_texCoord;\n  float cellW = u_resolution.x / u_gridSize.x;\n\n  // Cursor gravity: cells near the cursor are pushed radially outward,\n  // with a suction pit at the cursor centre\n  if (u_mouse.x >= 0.0) {\n    vec2 mousePx = u_mouse * u_resolution;\n    vec2 d = px - mousePx;\n    float r = length(d);\n    float pushRadius = 90.0;\n    float pushStrength = 0.85;\n    if (r < pushRadius) {\n      float t = 1.0 - r / pushRadius;\n      // Pull proportional to r, so the collapsed core stays about one cell\n      // wide while the distortion field itself is wide\n      float rSrc = r * (1.0 - pushStrength * t * t);\n      vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;\n      // Where the push collapses onto the cursor, keep the cell's\n      // own sample so the pit shows the background, not a solid disc\n      float keep = smoothstep(0.0, cellW, rSrc);\n      uv = mix(v_texCoord, srcPx / u_resolution, keep);\n    }\n  }\n\n  // Click ripple: a damped-oscillation displacement wave that travels\n  // across the whole screen, shaded by the wave slope so it reads as depth\n  float rippleShade = 0.0;\n  if (u_rippleEnabled > 0.5) {\n    vec2 rippleOffset = vec2(0.0);\n    vec2 lightDir = normalize(vec2(0.45, -0.89));\n    for (int i = 0; i < 16; i++) {\n      vec4 ripple = u_ripples[i];\n      if (ripple.w <= 0.0) continue;\n      float amp = ripple.w;\n      float age = u_time - ripple.z;\n      if (age < 0.0) continue;\n      vec2 d = px - ripple.xy * u_resolution;\n      float r = length(d);\n      vec2 dir = (r > 0.0001) ? d / r : vec2(0.0);\n      float front = (5.0 + age * u_rippleSpeed) * cellW;\n      float width = 60.0;\n      float x = (r - front) / width;\n      // Leading crest plus trailing oscillations, Gaussian-enveloped\n      float env = exp(-x * x * 0.55);\n      float wave = env * sin(x * 6.5);\n      float decay = 1.0 / (1.0 + age * 0.5);\n      rippleOffset += dir * wave * amp * 24.0 * decay;\n      // Slope of the wave height field projected on the light direction:\n      // the edge facing the light brightens and the far edge darkens,\n      // which reads as depth rather than a uniform outline\n      float slope = env * (6.5 * cos(x * 6.5) - 1.1 * x * sin(x * 6.5)) / width;\n      rippleShade += amp * decay * slope * dot(dir, lightDir) * 4.0;\n    }\n    uv -= rippleOffset / u_resolution;\n  }\n  uv = clamp(uv, vec2(0.0), vec2(0.9999));\n\n  // Figure out which ASCII cell this pixel is in\n  vec2 cellCoord = floor(uv * u_gridSize);\n  \n  // Sample video at cell center (mipmaps handle averaging)\n  vec2 cellCenter = (cellCoord + 0.5) / u_gridSize;\n  vec4 videoColor = texture(u_video, cellCenter);\n  \n  // Perceived brightness using human eye sensitivity weights\n  float baseBrightness = dot(videoColor.rgb, vec3(0.299, 0.587, 0.114));\n  \n  // Audio reactivity - louder = brighter, silence = darker\n  float minBrightness = mix(0.3, 0.0, u_audioSensitivity);\n  float maxBrightness = mix(1.0, 5.0, u_audioSensitivity);\n  float audioMultiplier = mix(minBrightness, maxBrightness, u_audioLevel);\n  float audioModulated = baseBrightness * audioMultiplier;\n  float brightness = mix(baseBrightness, audioModulated, u_audioReactivity);\n  \n  // Apply brightness multiplier\n  // brightness < 1.0: darkens (multiply)\n  // brightness > 1.0: brightens (compress dark values toward 1.0)\n  float adjustedBrightness;\n  if (u_brightness <= 1.0) {\n    adjustedBrightness = brightness * u_brightness;\n  } else {\n    // For brightness > 1.0, compress the range: dark values get pushed up\n    // Formula: 1.0 - (1.0 - brightness) / u_brightness\n    // This makes dark values brighter while keeping bright values near 1.0\n    adjustedBrightness = 1.0 - (1.0 - brightness) / u_brightness;\n  }\n  adjustedBrightness = clamp(adjustedBrightness, 0.0, 1.0);\n  \n  // Map brightness to character index (0 = darkest char, numChars-1 = brightest)\n  float charIndex = floor(adjustedBrightness * (u_numChars - 0.001));\n  \n  // Find the character in the atlas (horizontal strip of pre-rendered chars)\n  float atlasX = charIndex / u_numChars;\n  vec2 cellPos = fract(uv * u_gridSize);\n  vec2 atlasCoord = vec2(atlasX + cellPos.x / u_numChars, cellPos.y);\n  vec4 charColor = texture(u_asciiAtlas, atlasCoord);\n  \n  // Pick the color - video colors or green terminal aesthetic\n  vec3 baseColor;\n  if (u_colored) {\n    baseColor = videoColor.rgb;\n  } else {\n    baseColor = vec3(0.0, 1.0, 0.0);\n  }\n  \n  // Artificial brightness lift then white paper background with colored ink\n  baseColor = clamp(baseColor * 1.15 + 0.04, 0.0, 1.0);\n  vec3 bgColor = vec3(1.0);\n  vec3 textColor = baseColor;\n  vec3 finalColor = mix(bgColor, textColor, charColor.r);\n  \n  // Directional shading from the ripple height field\n  finalColor *= clamp(1.0 - rippleShade, 0.55, 1.4);\n  \n  // Blend with original video if requested\n  vec3 blendedColor = mix(finalColor, videoColor.rgb, u_blend);\n  \n  fragColor = vec4(blendedColor, 1.0);\n}\n";
  
  // src/lib/webgl/utils.ts
  function compileShader(gl, source, type) {
+@@ -222,7 +222,7 @@ var CHAR_WIDTH_RATIO = 0.6;
+ 
+ // src/hooks/useVideoToAscii.ts
+ var MAX_TRAIL_LENGTH = 24;
+-var MAX_RIPPLES = 8;
++var MAX_RIPPLES = 16;
+ function useVideoToAscii(options = {}) {
+   const {
+     fontSize,
+@@ -595,7 +595,7 @@ function useAsciiMouseEffect(ascii, options = {}) {
+ 
+ // src/hooks/useAsciiRipple.ts
+ var import_react3 = require("react");
+-var MAX_RIPPLES2 = 8;
++var MAX_RIPPLES2 = 16;
+ function useAsciiRipple(ascii, options = {}) {
+   const { enabled = false, speed = 40 } = options;
+   const ripplesRef = (0, import_react3.useRef)([]);
+@@ -624,7 +624,7 @@ function useAsciiRipple(ascii, options = {}) {
+         if (loc) {
+           const ripple = ripplesRef.current[i];
+           if (ripple) {
+-            gl.uniform4f(loc, ripple.x, ripple.y, ripple.startTime, 1);
++            gl.uniform4f(loc, ripple.x, ripple.y, ripple.startTime, ripple.amp);
+           } else {
+             gl.uniform4f(loc, 0, 0, 0, 0);
+           }
+@@ -636,21 +636,52 @@ function useAsciiRipple(ascii, options = {}) {
+       ascii.unregisterUniformSetter("ripple");
+     };
+   }, [ascii, enabled]);
+-  const onClick = (0, import_react3.useCallback)((e) => {
+-    if (!enabledRef.current) return;
+-    const rect = e.currentTarget.getBoundingClientRect();
+-    const x = (e.clientX - rect.left) / rect.width;
+-    const y = (e.clientY - rect.top) / rect.height;
++  const draggingRef = (0, import_react3.useRef)(false);
++  const lastSpawnRef = (0, import_react3.useRef)({ x: 0, y: 0 });
++  const pushRipple = (0, import_react3.useCallback)((x, y, amp) => {
+     ripplesRef.current.unshift({
+       x,
+       y,
+-      startTime: performance.now() / 1e3
++      startTime: performance.now() / 1e3,
++      amp
+     });
+     if (ripplesRef.current.length > MAX_RIPPLES2) {
+       ripplesRef.current.pop();
+     }
+   }, []);
+-  return { onClick };
++  const onPointerDown = (0, import_react3.useCallback)((e) => {
++    if (!enabledRef.current || e.button !== 0) return;
++    const rect = e.currentTarget.getBoundingClientRect();
++    const x = (e.clientX - rect.left) / rect.width;
++    const y = (e.clientY - rect.top) / rect.height;
++    draggingRef.current = true;
++    lastSpawnRef.current = { x: e.clientX, y: e.clientY };
++    pushRipple(x, y, 1);
++    e.currentTarget.setPointerCapture?.(e.pointerId);
++  }, [pushRipple]);
++  const onPointerMove = (0, import_react3.useCallback)((e) => {
++    if (!enabledRef.current || !draggingRef.current) return;
++    const dx = e.clientX - lastSpawnRef.current.x;
++    const dy = e.clientY - lastSpawnRef.current.y;
++    if (dx * dx + dy * dy < 26 * 26) return;
++    const rect = e.currentTarget.getBoundingClientRect();
++    lastSpawnRef.current = { x: e.clientX, y: e.clientY };
++    pushRipple(
++      (e.clientX - rect.left) / rect.width,
++      (e.clientY - rect.top) / rect.height,
++      0.45
++    );
++  }, [pushRipple]);
++  const onPointerEnd = (0, import_react3.useCallback)(() => {
++    draggingRef.current = false;
++  }, []);
++  return {
++    onPointerDown,
++    onPointerMove,
++    onPointerUp: onPointerEnd,
++    onPointerCancel: onPointerEnd,
++    onPointerLeave: onPointerEnd
++  };
+ }
+ 
+ // src/hooks/useAsciiAudio.ts
 diff --git a/node_modules/video2ascii/dist/index.mjs b/node_modules/video2ascii/dist/index.mjs
-index 36f41fe..8e26d21 100644
+index 36f41fe..6f09ed9 100644
 --- a/node_modules/video2ascii/dist/index.mjs
 +++ b/node_modules/video2ascii/dist/index.mjs
 @@ -76,7 +76,7 @@ function getCharArray(charset) {
@@ -20,7 +107,94 @@ index 36f41fe..8e26d21 100644
  
  // src/lib/webgl/shaders/fragment.glsl
 -var fragment_default = "#version 300 es\nprecision highp float;\n\n// Textures\nuniform sampler2D u_video;\nuniform sampler2D u_asciiAtlas;\n\n// Dimensions\nuniform vec2 u_resolution;\nuniform vec2 u_charSize;\nuniform vec2 u_gridSize;\nuniform float u_numChars;\n\n// Rendering options\nuniform bool u_colored;\nuniform float u_blend;\nuniform float u_highlight;\nuniform float u_brightness;\n\n// Audio\nuniform float u_audioLevel;\nuniform float u_audioReactivity;\nuniform float u_audioSensitivity;\n\n// Mouse\nuniform vec2 u_mouse;\nuniform float u_mouseRadius;\nuniform vec2 u_trail[24];\nuniform int u_trailLength;\n\n// Ripple\nuniform vec4 u_ripples[8];\nuniform float u_time;\nuniform float u_rippleEnabled;\nuniform float u_rippleSpeed;\n\nin vec2 v_texCoord;\nout vec4 fragColor;\n\nvoid main() {\n  // Figure out which ASCII cell this pixel is in\n  vec2 cellCoord = floor(v_texCoord * u_gridSize);\n  vec2 thisCell = cellCoord;\n  \n  // Sample video at cell center (mipmaps handle averaging)\n  vec2 cellCenter = (cellCoord + 0.5) / u_gridSize;\n  vec4 videoColor = texture(u_video, cellCenter);\n  \n  // Perceived brightness using human eye sensitivity weights\n  float baseBrightness = dot(videoColor.rgb, vec3(0.299, 0.587, 0.114));\n  \n  // Audio reactivity - louder = brighter, silence = darker\n  float minBrightness = mix(0.3, 0.0, u_audioSensitivity);\n  float maxBrightness = mix(1.0, 5.0, u_audioSensitivity);\n  float audioMultiplier = mix(minBrightness, maxBrightness, u_audioLevel);\n  float audioModulated = baseBrightness * audioMultiplier;\n  float brightness = mix(baseBrightness, audioModulated, u_audioReactivity);\n  \n  // Cursor glow - blocky circle effect\n  float cursorGlow = 0.0;\n  float cursorRadius = 5.0;\n  \n  vec2 mouseCell = floor(u_mouse * u_gridSize);\n  float cellDist = length(thisCell - mouseCell);\n  if (cellDist <= cursorRadius && u_mouse.x >= 0.0) {\n    cursorGlow += 1.0 - cellDist / cursorRadius;\n  }\n  \n  // Trail effect\n  for (int i = 0; i < 12; i++) {\n    if (i >= u_trailLength) break;\n    vec2 trailPos = u_trail[i];\n    if (trailPos.x < 0.0) continue;\n    \n    vec2 trailCell = floor(trailPos * u_gridSize);\n    float trailDist = length(thisCell - trailCell);\n    float trailRadius = cursorRadius * 0.8;\n    \n    if (trailDist <= trailRadius) {\n      float fade = 1.0 - float(i) / float(u_trailLength);\n      cursorGlow += (1.0 - trailDist / trailRadius) * 0.5 * fade;\n    }\n  }\n  cursorGlow = min(cursorGlow, 1.0);\n  \n  // Ripple effect - expanding rings on click\n  float rippleGlow = 0.0;\n  if (u_rippleEnabled > 0.5) {\n    for (int i = 0; i < 8; i++) {\n      vec4 ripple = u_ripples[i];\n      if (ripple.w < 0.5) continue;\n      \n      float age = u_time - ripple.z;\n      if (age < 0.0) continue;\n      \n      vec2 rippleCell = floor(ripple.xy * u_gridSize);\n      float cellDist = length(thisCell - rippleCell);\n      float initialRadius = 5.0;\n      \n      float distFromEdge = max(0.0, cellDist - initialRadius);\n      float rippleSpeed = u_rippleSpeed;\n      float reachTime = distFromEdge / rippleSpeed;\n      float timeSinceReached = age - reachTime;\n      \n      float fadeDuration = 0.5;\n      if (timeSinceReached >= 0.0 && timeSinceReached < fadeDuration) {\n        float pop = 1.0 - timeSinceReached / fadeDuration;\n        pop = pop * pop;\n        rippleGlow += pop * 0.3;\n      }\n    }\n    rippleGlow = min(rippleGlow, 1.0);\n  }\n  \n  // Apply brightness multiplier\n  // brightness < 1.0: darkens (multiply)\n  // brightness > 1.0: brightens (compress dark values toward 1.0)\n  float adjustedBrightness;\n  if (u_brightness <= 1.0) {\n    adjustedBrightness = brightness * u_brightness;\n  } else {\n    // For brightness > 1.0, compress the range: dark values get pushed up\n    // Formula: 1.0 - (1.0 - brightness) / u_brightness\n    // This makes dark values brighter while keeping bright values near 1.0\n    adjustedBrightness = 1.0 - (1.0 - brightness) / u_brightness;\n  }\n  adjustedBrightness = clamp(adjustedBrightness, 0.0, 1.0);\n  \n  // Map brightness to character index (0 = darkest char, numChars-1 = brightest)\n  float charIndex = floor(adjustedBrightness * (u_numChars - 0.001));\n  \n  // Find the character in the atlas (horizontal strip of pre-rendered chars)\n  float atlasX = charIndex / u_numChars;\n  vec2 cellPos = fract(v_texCoord * u_gridSize);\n  vec2 atlasCoord = vec2(atlasX + cellPos.x / u_numChars, cellPos.y);\n  vec4 charColor = texture(u_asciiAtlas, atlasCoord);\n  \n  // Pick the color - video colors or green terminal aesthetic\n  vec3 baseColor;\n  if (u_colored) {\n    baseColor = videoColor.rgb;\n  } else {\n    baseColor = vec3(0.0, 1.0, 0.0);\n  }\n  \n  // Background highlight behind each character\n  float bgIntensity = 0.15 + u_highlight * 0.35;\n  vec3 bgColor = baseColor * bgIntensity;\n  vec3 textColor = baseColor * 1.2;\n  vec3 finalColor = mix(bgColor, textColor, charColor.r);\n  \n  // Add cursor and ripple glow\n  finalColor += cursorGlow * baseColor * 0.5;\n  finalColor += rippleGlow * baseColor;\n  \n  // Blend with original video if requested\n  vec3 blendedColor = mix(finalColor, videoColor.rgb, u_blend);\n  \n  fragColor = vec4(blendedColor, 1.0);\n}\n";
-+var fragment_default = "#version 300 es\nprecision highp float;\n\n// Textures\nuniform sampler2D u_video;\nuniform sampler2D u_asciiAtlas;\n\n// Dimensions\nuniform vec2 u_resolution;\nuniform vec2 u_charSize;\nuniform vec2 u_gridSize;\nuniform float u_numChars;\n\n// Rendering options\nuniform bool u_colored;\nuniform float u_blend;\nuniform float u_highlight;\nuniform float u_brightness;\n\n// Audio\nuniform float u_audioLevel;\nuniform float u_audioReactivity;\nuniform float u_audioSensitivity;\n\n// Mouse\nuniform vec2 u_mouse;\nuniform float u_mouseRadius;\nuniform vec2 u_trail[24];\nuniform int u_trailLength;\n\n// Ripple\nuniform vec4 u_ripples[8];\nuniform float u_time;\nuniform float u_rippleEnabled;\nuniform float u_rippleSpeed;\n\nin vec2 v_texCoord;\nout vec4 fragColor;\n\nvoid main() {\n  // Work in pixel space so the effects stay circular regardless of aspect\n  vec2 px = v_texCoord * u_resolution;\n  vec2 uv = v_texCoord;\n  float cellW = u_resolution.x / u_gridSize.x;\n\n  // Cursor gravity: cells near the cursor are pushed radially outward,\n  // with a suction pit at the cursor centre\n  if (u_mouse.x >= 0.0) {\n    vec2 mousePx = u_mouse * u_resolution;\n    vec2 d = px - mousePx;\n    float r = length(d);\n    float pushRadius = 90.0;\n    float pushStrength = 0.85;\n    if (r < pushRadius) {\n      float t = 1.0 - r / pushRadius;\n      // Pull proportional to r, so the collapsed core stays about one cell\n      // wide while the distortion field itself is wide\n      float rSrc = r * (1.0 - pushStrength * t * t);\n      vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;\n      // Where the push collapses onto the cursor, keep the cell's\n      // own sample so the pit shows the background, not a solid disc\n      float keep = smoothstep(0.0, cellW, rSrc);\n      uv = mix(v_texCoord, srcPx / u_resolution, keep);\n    }\n  }\n\n  // Click ripple: a displacement wave that travels across the whole screen\n  if (u_rippleEnabled > 0.5) {\n    vec2 rippleOffset = vec2(0.0);\n    for (int i = 0; i < 8; i++) {\n      vec4 ripple = u_ripples[i];\n      if (ripple.w < 0.5) continue;\n      float age = u_time - ripple.z;\n      if (age < 0.0) continue;\n      vec2 d = px - ripple.xy * u_resolution;\n      float r = length(d);\n      float front = (5.0 + age * u_rippleSpeed) * cellW;\n      float width = 48.0;\n      float x = (r - front) / width;\n      float wave = exp(-x * x) * sin(x * 3.14159);\n      float decay = 1.0 / (1.0 + age * 0.5);\n      if (r > 0.0001) rippleOffset += (d / r) * wave * 14.0 * decay;\n    }\n    uv -= rippleOffset / u_resolution;\n  }\n  uv = clamp(uv, vec2(0.0), vec2(0.9999));\n\n  // Figure out which ASCII cell this pixel is in\n  vec2 cellCoord = floor(uv * u_gridSize);\n  \n  // Sample video at cell center (mipmaps handle averaging)\n  vec2 cellCenter = (cellCoord + 0.5) / u_gridSize;\n  vec4 videoColor = texture(u_video, cellCenter);\n  \n  // Perceived brightness using human eye sensitivity weights\n  float baseBrightness = dot(videoColor.rgb, vec3(0.299, 0.587, 0.114));\n  \n  // Audio reactivity - louder = brighter, silence = darker\n  float minBrightness = mix(0.3, 0.0, u_audioSensitivity);\n  float maxBrightness = mix(1.0, 5.0, u_audioSensitivity);\n  float audioMultiplier = mix(minBrightness, maxBrightness, u_audioLevel);\n  float audioModulated = baseBrightness * audioMultiplier;\n  float brightness = mix(baseBrightness, audioModulated, u_audioReactivity);\n  \n  // Apply brightness multiplier\n  // brightness < 1.0: darkens (multiply)\n  // brightness > 1.0: brightens (compress dark values toward 1.0)\n  float adjustedBrightness;\n  if (u_brightness <= 1.0) {\n    adjustedBrightness = brightness * u_brightness;\n  } else {\n    // For brightness > 1.0, compress the range: dark values get pushed up\n    // Formula: 1.0 - (1.0 - brightness) / u_brightness\n    // This makes dark values brighter while keeping bright values near 1.0\n    adjustedBrightness = 1.0 - (1.0 - brightness) / u_brightness;\n  }\n  adjustedBrightness = clamp(adjustedBrightness, 0.0, 1.0);\n  \n  // Map brightness to character index (0 = darkest char, numChars-1 = brightest)\n  float charIndex = floor(adjustedBrightness * (u_numChars - 0.001));\n  \n  // Find the character in the atlas (horizontal strip of pre-rendered chars)\n  float atlasX = charIndex / u_numChars;\n  vec2 cellPos = fract(uv * u_gridSize);\n  vec2 atlasCoord = vec2(atlasX + cellPos.x / u_numChars, cellPos.y);\n  vec4 charColor = texture(u_asciiAtlas, atlasCoord);\n  \n  // Pick the color - video colors or green terminal aesthetic\n  vec3 baseColor;\n  if (u_colored) {\n    baseColor = videoColor.rgb;\n  } else {\n    baseColor = vec3(0.0, 1.0, 0.0);\n  }\n  \n  // Artificial brightness lift then white paper background with colored ink\n  baseColor = clamp(baseColor * 1.15 + 0.04, 0.0, 1.0);\n  vec3 bgColor = vec3(1.0);\n  vec3 textColor = baseColor;\n  vec3 finalColor = mix(bgColor, textColor, charColor.r);\n  \n  // Blend with original video if requested\n  vec3 blendedColor = mix(finalColor, videoColor.rgb, u_blend);\n  \n  fragColor = vec4(blendedColor, 1.0);\n}\n";
++var fragment_default = "#version 300 es\nprecision highp float;\n\n// Textures\nuniform sampler2D u_video;\nuniform sampler2D u_asciiAtlas;\n\n// Dimensions\nuniform vec2 u_resolution;\nuniform vec2 u_charSize;\nuniform vec2 u_gridSize;\nuniform float u_numChars;\n\n// Rendering options\nuniform bool u_colored;\nuniform float u_blend;\nuniform float u_highlight;\nuniform float u_brightness;\n\n// Audio\nuniform float u_audioLevel;\nuniform float u_audioReactivity;\nuniform float u_audioSensitivity;\n\n// Mouse\nuniform vec2 u_mouse;\nuniform float u_mouseRadius;\nuniform vec2 u_trail[24];\nuniform int u_trailLength;\n\n// Ripple\nuniform vec4 u_ripples[16];\nuniform float u_time;\nuniform float u_rippleEnabled;\nuniform float u_rippleSpeed;\n\nin vec2 v_texCoord;\nout vec4 fragColor;\n\nvoid main() {\n  // Work in pixel space so the effects stay circular regardless of aspect\n  vec2 px = v_texCoord * u_resolution;\n  vec2 uv = v_texCoord;\n  float cellW = u_resolution.x / u_gridSize.x;\n\n  // Cursor gravity: cells near the cursor are pushed radially outward,\n  // with a suction pit at the cursor centre\n  if (u_mouse.x >= 0.0) {\n    vec2 mousePx = u_mouse * u_resolution;\n    vec2 d = px - mousePx;\n    float r = length(d);\n    float pushRadius = 90.0;\n    float pushStrength = 0.85;\n    if (r < pushRadius) {\n      float t = 1.0 - r / pushRadius;\n      // Pull proportional to r, so the collapsed core stays about one cell\n      // wide while the distortion field itself is wide\n      float rSrc = r * (1.0 - pushStrength * t * t);\n      vec2 srcPx = mousePx + (r > 0.0001 ? d / r : vec2(0.0)) * rSrc;\n      // Where the push collapses onto the cursor, keep the cell's\n      // own sample so the pit shows the background, not a solid disc\n      float keep = smoothstep(0.0, cellW, rSrc);\n      uv = mix(v_texCoord, srcPx / u_resolution, keep);\n    }\n  }\n\n  // Click ripple: a damped-oscillation displacement wave that travels\n  // across the whole screen, shaded by the wave slope so it reads as depth\n  float rippleShade = 0.0;\n  if (u_rippleEnabled > 0.5) {\n    vec2 rippleOffset = vec2(0.0);\n    vec2 lightDir = normalize(vec2(0.45, -0.89));\n    for (int i = 0; i < 16; i++) {\n      vec4 ripple = u_ripples[i];\n      if (ripple.w <= 0.0) continue;\n      float amp = ripple.w;\n      float age = u_time - ripple.z;\n      if (age < 0.0) continue;\n      vec2 d = px - ripple.xy * u_resolution;\n      float r = length(d);\n      vec2 dir = (r > 0.0001) ? d / r : vec2(0.0);\n      float front = (5.0 + age * u_rippleSpeed) * cellW;\n      float width = 60.0;\n      float x = (r - front) / width;\n      // Leading crest plus trailing oscillations, Gaussian-enveloped\n      float env = exp(-x * x * 0.55);\n      float wave = env * sin(x * 6.5);\n      float decay = 1.0 / (1.0 + age * 0.5);\n      rippleOffset += dir * wave * amp * 24.0 * decay;\n      // Slope of the wave height field projected on the light direction:\n      // the edge facing the light brightens and the far edge darkens,\n      // which reads as depth rather than a uniform outline\n      float slope = env * (6.5 * cos(x * 6.5) - 1.1 * x * sin(x * 6.5)) / width;\n      rippleShade += amp * decay * slope * dot(dir, lightDir) * 4.0;\n    }\n    uv -= rippleOffset / u_resolution;\n  }\n  uv = clamp(uv, vec2(0.0), vec2(0.9999));\n\n  // Figure out which ASCII cell this pixel is in\n  vec2 cellCoord = floor(uv * u_gridSize);\n  \n  // Sample video at cell center (mipmaps handle averaging)\n  vec2 cellCenter = (cellCoord + 0.5) / u_gridSize;\n  vec4 videoColor = texture(u_video, cellCenter);\n  \n  // Perceived brightness using human eye sensitivity weights\n  float baseBrightness = dot(videoColor.rgb, vec3(0.299, 0.587, 0.114));\n  \n  // Audio reactivity - louder = brighter, silence = darker\n  float minBrightness = mix(0.3, 0.0, u_audioSensitivity);\n  float maxBrightness = mix(1.0, 5.0, u_audioSensitivity);\n  float audioMultiplier = mix(minBrightness, maxBrightness, u_audioLevel);\n  float audioModulated = baseBrightness * audioMultiplier;\n  float brightness = mix(baseBrightness, audioModulated, u_audioReactivity);\n  \n  // Apply brightness multiplier\n  // brightness < 1.0: darkens (multiply)\n  // brightness > 1.0: brightens (compress dark values toward 1.0)\n  float adjustedBrightness;\n  if (u_brightness <= 1.0) {\n    adjustedBrightness = brightness * u_brightness;\n  } else {\n    // For brightness > 1.0, compress the range: dark values get pushed up\n    // Formula: 1.0 - (1.0 - brightness) / u_brightness\n    // This makes dark values brighter while keeping bright values near 1.0\n    adjustedBrightness = 1.0 - (1.0 - brightness) / u_brightness;\n  }\n  adjustedBrightness = clamp(adjustedBrightness, 0.0, 1.0);\n  \n  // Map brightness to character index (0 = darkest char, numChars-1 = brightest)\n  float charIndex = floor(adjustedBrightness * (u_numChars - 0.001));\n  \n  // Find the character in the atlas (horizontal strip of pre-rendered chars)\n  float atlasX = charIndex / u_numChars;\n  vec2 cellPos = fract(uv * u_gridSize);\n  vec2 atlasCoord = vec2(atlasX + cellPos.x / u_numChars, cellPos.y);\n  vec4 charColor = texture(u_asciiAtlas, atlasCoord);\n  \n  // Pick the color - video colors or green terminal aesthetic\n  vec3 baseColor;\n  if (u_colored) {\n    baseColor = videoColor.rgb;\n  } else {\n    baseColor = vec3(0.0, 1.0, 0.0);\n  }\n  \n  // Artificial brightness lift then white paper background with colored ink\n  baseColor = clamp(baseColor * 1.15 + 0.04, 0.0, 1.0);\n  vec3 bgColor = vec3(1.0);\n  vec3 textColor = baseColor;\n  vec3 finalColor = mix(bgColor, textColor, charColor.r);\n  \n  // Directional shading from the ripple height field\n  finalColor *= clamp(1.0 - rippleShade, 0.55, 1.4);\n  \n  // Blend with original video if requested\n  vec3 blendedColor = mix(finalColor, videoColor.rgb, u_blend);\n  \n  fragColor = vec4(blendedColor, 1.0);\n}\n";
  
  // src/lib/webgl/utils.ts
  function compileShader(gl, source, type) {
+@@ -197,7 +197,7 @@ var CHAR_WIDTH_RATIO = 0.6;
+ 
+ // src/hooks/useVideoToAscii.ts
+ var MAX_TRAIL_LENGTH = 24;
+-var MAX_RIPPLES = 8;
++var MAX_RIPPLES = 16;
+ function useVideoToAscii(options = {}) {
+   const {
+     fontSize,
+@@ -570,7 +570,7 @@ function useAsciiMouseEffect(ascii, options = {}) {
+ 
+ // src/hooks/useAsciiRipple.ts
+ import { useCallback as useCallback3, useEffect as useEffect3, useRef as useRef3 } from "react";
+-var MAX_RIPPLES2 = 8;
++var MAX_RIPPLES2 = 16;
+ function useAsciiRipple(ascii, options = {}) {
+   const { enabled = false, speed = 40 } = options;
+   const ripplesRef = useRef3([]);
+@@ -599,7 +599,7 @@ function useAsciiRipple(ascii, options = {}) {
+         if (loc) {
+           const ripple = ripplesRef.current[i];
+           if (ripple) {
+-            gl.uniform4f(loc, ripple.x, ripple.y, ripple.startTime, 1);
++            gl.uniform4f(loc, ripple.x, ripple.y, ripple.startTime, ripple.amp);
+           } else {
+             gl.uniform4f(loc, 0, 0, 0, 0);
+           }
+@@ -611,21 +611,52 @@ function useAsciiRipple(ascii, options = {}) {
+       ascii.unregisterUniformSetter("ripple");
+     };
+   }, [ascii, enabled]);
+-  const onClick = useCallback3((e) => {
+-    if (!enabledRef.current) return;
+-    const rect = e.currentTarget.getBoundingClientRect();
+-    const x = (e.clientX - rect.left) / rect.width;
+-    const y = (e.clientY - rect.top) / rect.height;
++  const draggingRef = useRef3(false);
++  const lastSpawnRef = useRef3({ x: 0, y: 0 });
++  const pushRipple = useCallback3((x, y, amp) => {
+     ripplesRef.current.unshift({
+       x,
+       y,
+-      startTime: performance.now() / 1e3
++      startTime: performance.now() / 1e3,
++      amp
+     });
+     if (ripplesRef.current.length > MAX_RIPPLES2) {
+       ripplesRef.current.pop();
+     }
+   }, []);
+-  return { onClick };
++  const onPointerDown = useCallback3((e) => {
++    if (!enabledRef.current || e.button !== 0) return;
++    const rect = e.currentTarget.getBoundingClientRect();
++    const x = (e.clientX - rect.left) / rect.width;
++    const y = (e.clientY - rect.top) / rect.height;
++    draggingRef.current = true;
++    lastSpawnRef.current = { x: e.clientX, y: e.clientY };
++    pushRipple(x, y, 1);
++    e.currentTarget.setPointerCapture?.(e.pointerId);
++  }, [pushRipple]);
++  const onPointerMove = useCallback3((e) => {
++    if (!enabledRef.current || !draggingRef.current) return;
++    const dx = e.clientX - lastSpawnRef.current.x;
++    const dy = e.clientY - lastSpawnRef.current.y;
++    if (dx * dx + dy * dy < 26 * 26) return;
++    const rect = e.currentTarget.getBoundingClientRect();
++    lastSpawnRef.current = { x: e.clientX, y: e.clientY };
++    pushRipple(
++      (e.clientX - rect.left) / rect.width,
++      (e.clientY - rect.top) / rect.height,
++      0.45
++    );
++  }, [pushRipple]);
++  const onPointerEnd = useCallback3(() => {
++    draggingRef.current = false;
++  }, []);
++  return {
++    onPointerDown,
++    onPointerMove,
++    onPointerUp: onPointerEnd,
++    onPointerCancel: onPointerEnd,
++    onPointerLeave: onPointerEnd
++  };
+ }
+ 
+ // src/hooks/useAsciiAudio.ts
