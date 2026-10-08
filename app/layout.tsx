@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import NavRail from "./nav-rail";
+// Sidebar hidden for now — component kept in ./nav-rail.tsx to re-enable later.
+// import NavRail from "./nav-rail";
 
 const spaceMono = localFont({
   src: [
@@ -22,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={spaceMono.className}>
       <body>
-        <NavRail />
+        {/* <NavRail /> */}
         {children}
       </body>
     </html>
