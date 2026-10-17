@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import TopNav from "./top-nav";
 // Sidebar hidden for now — component kept in ./nav-rail.tsx to re-enable later.
 // import NavRail from "./nav-rail";
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={spaceMono.className}>
       <body>
         {/* <NavRail /> */}
+        <TopNav />
         {children}
       </body>
     </html>
