@@ -30,3 +30,27 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* Top-right nav button (see top-nav.tsx) */
+.topNavLink {
+  position: fixed;
+  top: 2.6rem;
+  right: 3rem;
+  z-index: 30;
+  font-size: 0.75rem;
+  color: #2e2b28;
+  opacity: 0.55;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.topNavLink:hover {
+  opacity: 1;
+  color: #8b6f47;
+}
+
+@media (max-width: 640px) {
+  .topNavLink {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+}
