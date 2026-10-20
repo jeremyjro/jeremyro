@@ -226,3 +226,27 @@
   line-height: 1.7;
   color: #9A948C;
 }
+
+/* Bottom-left "enter" link, mirrors the social links on the right */
+.enterLink {
+  position: fixed;
+  bottom: 2.75rem;
+  left: 3rem;
+  z-index: 20;
+  font-size: 0.75rem;
+  color: #2e2b28;
+  opacity: 0.55;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.enterLink:hover {
+  opacity: 1;
+  color: #8b6f47;
+}
+
+@media (max-width: 640px) {
+  .enterLink {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+}

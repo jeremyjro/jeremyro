@@ -50,7 +50,7 @@
    small hand-drawn icon at left, name, hand-drawn arrow, muted tldr. */
 .note {
   font-size: 18px;
-  padding: 9px 0 9px 1.75em;
+  padding: 9px 0;
   position: relative;
 }
 
@@ -79,15 +79,13 @@
 }
 
 .handArrow {
-  vertical-align: 0.12em;
+  vertical-align: middle;
   fill: none;
   stroke: #8a857d;
   stroke-width: 1.45px;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1.15em;
-  height: 0.6em;
-  margin: 0 0.32em;
+  margin: 0 0.4em;
   display: inline-block;
   overflow: visible;
 }
@@ -130,3 +128,8 @@
     height: 26px;
   }
 }
+
+.note .handArrow:first-child { margin-left: 0; }
+.handArrow path { vector-effect: non-scaling-stroke; }
+
+.page .notes, .page .notes * { text-transform: none; }

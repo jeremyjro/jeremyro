@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import AsciiVideo from "./ascii-video";
 import AsciiRevealText from "./ascii-reveal-text";
+import Link from "next/link";
 import SocialLinks from "./social-links";
 
 // Playlist: plays each clip in order, then loops back to the first.
@@ -27,6 +28,10 @@ export default function Home() {
           className={styles.heroSaying}
         />
       </div>
+
+      <Link href="/blank" className={styles.enterLink}>
+        enter
+      </Link>
 
       <SocialLinks />
     </section>
