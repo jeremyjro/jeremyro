@@ -35,12 +35,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   pointer-events: none;
 }
 
 .heroSaying {
-  font-size: clamp(0.62rem, 2.1vw, 1.35rem);
+  font-size: clamp(0.434rem, 1.47vw, 0.945rem);
   font-weight: 400;
+  white-space: nowrap;
   letter-spacing: 0.02em;
   word-spacing: -0.08em;
   color: #000000;
@@ -83,9 +85,8 @@
   }
 
   .heroSaying {
-    font-size: clamp(0.66rem, 4.2vw, 1.15rem);
+    font-size: clamp(0.462rem, 2.94vw, 0.805rem);
     letter-spacing: 0.02em;
-    padding: 0 1rem;
   }
 
   .scrollHint {
