@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import GlassCursor from "./glass-cursor";
 // Sidebar hidden for now — component kept in ./nav-rail.tsx to re-enable later.
 // import NavRail from "./nav-rail";
 
@@ -26,7 +25,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* <NavRail /> */}
         {children}
-        <GlassCursor />
       </body>
     </html>
   );
