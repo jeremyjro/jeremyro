@@ -1,7 +1,6 @@
 import styles from "./page.module.css";
 import AsciiVideo from "./ascii-video";
 import AsciiRevealText from "./ascii-reveal-text";
-import SocialLinks from "./social-links";
 
 // Playlist: plays each clip in order, then loops back to the first.
 // Add, remove, or reorder entries here to change what plays on the hero.
@@ -28,7 +27,6 @@ export default function Home() {
         />
       </div>
 
-      <SocialLinks />
     </section>
   );
 }
